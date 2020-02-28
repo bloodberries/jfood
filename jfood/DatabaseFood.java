@@ -10,7 +10,8 @@ public class DatabaseFood
 {
     // instance variables - replace the example below with your own
     private String[] listFood;
-
+    private Seller seller;
+    private Food food;
     
     /**
      * Constructor for objects of class DatbaseFood
@@ -19,6 +20,7 @@ public class DatabaseFood
     {
         // initialise instance variables
         
+       
     }
 
     /**

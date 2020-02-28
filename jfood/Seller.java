@@ -117,6 +117,6 @@ public class Seller
      */
     public void printData(){
         //getName();
-        System.out.println(name);
+        System.out.println(getName());
     }
 }

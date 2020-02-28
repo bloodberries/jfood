@@ -116,6 +116,6 @@ public class Invoice
     * Print data invoice
     */
     public void printData(){
-    
+        System.out.println(getTotalPrice());
     }
 }

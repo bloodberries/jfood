@@ -112,6 +112,6 @@ public class Food
      * Printdata food
      */
     public void printData(){
-        
+       System.out.println(getName());
     }
 }

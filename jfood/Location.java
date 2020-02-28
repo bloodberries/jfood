@@ -80,7 +80,7 @@ public class Location
     * Print data lokasi
     */
     public void printData(){
-        System.out.println(province);
+        System.out.println(getProvince());
         // getProvince();
     }
     

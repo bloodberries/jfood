@@ -20,7 +20,10 @@ public class JFood
          * Pembuatan object seller
          */
         Seller seller1 = new Seller(1, "Alfii", "sefalfian@gmail.com", "08123812313", location1);
-        Food food1 = new Food(2,"Sambel Bawang", seller1, 100000, "Sambal");
+        /**
+         * Pembuatan object food
+         */
+        Food food1 = new Food(1,"Sambel Bawang", seller1, 100000, "Sambal");
         /**
          * Pembuatan object customer
          */
@@ -28,21 +31,17 @@ public class JFood
         /**
          * Pembuatan object invoice
          */
-        Invoice invoice1 = new Invoice(1, 2, "12-12-2020", customer1, 200000);
+        Invoice invoice1 = new Invoice(1, 1, "12-12-2020", customer1, 200000);
         
         
-        // melakukan access method printData ke class tertentu
-        /**
-         * Mengakses method printData() dalam class location
-         */
-        location1.printData();
-        /**
-         * Mengakses method printData() dalam class seller
-         */
         seller1.printData();
-        /**
-         * Mengakses method printData() dalam class customer
-         */
-        customer1.printData();
+        seller1.setName("Rama");
+        seller1.printData();
+        
+        
+        food1.printData();
+        System.out.println(seller1.getName());
+        
+        
     }
 }

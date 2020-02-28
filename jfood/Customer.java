@@ -109,6 +109,6 @@ public class Customer
     */
     public void printData(){
         // getName();
-        System.out.println(name);
+        System.out.println(getName());
     }
 }
