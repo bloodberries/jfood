@@ -12,7 +12,7 @@ public class Food
     private String name;
     private Seller seller;
     private int price;
-    private String category;
+    private FoodCategory category;
     
 
     /**
@@ -23,7 +23,7 @@ public class Food
      * @param price untuk inisiasi price dari input obyek baru
      * @param category untuk inisiasi category dari input obyek baru
      */
-    public Food(int id, String name, Seller seller, int price, String category)
+    public Food(int id, String name, Seller seller, int price, FoodCategory category)
     {
         // initialise instance variables
         this.id = id;
@@ -60,6 +60,7 @@ public class Food
         return seller;
     }
     
+    
     /** 
      * Getter attribut price dalam class food
      * @return price
@@ -72,7 +73,7 @@ public class Food
      * Getter attribut category dalam class food
      * @return category
      */
-    public String getCategory(){
+    public FoodCategory getCategory(){
         return category;
     }
     
@@ -104,7 +105,7 @@ public class Food
      * Getter attribut category dalam class food
      * @param category untuk set ke instance variable category
      */
-    public void setCategory(String category){
+    public void setCategory(FoodCategory category){
         this.category = category;
     }
     
@@ -112,6 +113,13 @@ public class Food
      * Printdata food
      */
     public void printData(){
-       System.out.println(getName());
+       System.out.println("================FOOD================");
+       System.out.println("ID: " + getId());
+       System.out.println("Name: " + getName());
+       System.out.println("Seller: " + seller.getName());
+       System.out.println("City: " + seller.getLocation().getCity());
+       System.out.println("Price: " + getPrice());
+       System.out.println("Category: " + getCategory());
+       
     }
 }

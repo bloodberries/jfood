@@ -23,7 +23,7 @@ public class JFood
         /**
          * Pembuatan object food
          */
-        Food food1 = new Food(1,"Sambel Bawang", seller1, 100000, "Sambal");
+        Food food1 = new Food(1,"Sambel Bawang", seller1, 100000, FoodCategory.COFFEE);
         /**
          * Pembuatan object customer
          */
@@ -34,6 +34,7 @@ public class JFood
         Invoice invoice1 = new Invoice(1, 1, "12-12-2020", customer1, 200000);
         
         
+        
         seller1.printData();
         seller1.setName("Rama");
         seller1.printData();
@@ -42,6 +43,31 @@ public class JFood
         food1.printData();
         System.out.println(seller1.getName());
         
+        //Ini untuk fetch enum satuan     FoodCategory  
+        System.out.println(FoodCategory.BEVERAGES.toString());
+        System.out.println(FoodCategory.COFFEE.toString());
+        System.out.println(FoodCategory.WESTERN.toString());
+        System.out.println(FoodCategory.SNACKS.toString());
+        System.out.println(FoodCategory.RICE.toString());
+        System.out.println(FoodCategory.NOODLES.toString());
+        System.out.println(FoodCategory.BAKERY.toString());
+        System.out.println(FoodCategory.JAPANESE.toString());
         
+       // System.out.println(FoodCategory.BANDUNG.toString());
+       
+       // untuk fetch PaymentType
+        System.out.println(PaymentType.CASHLESS.toString());
+        System.out.println(PaymentType.CASH.toString());
+        
+        /*
+        // untuk iterate enum constantnya supaya bisa di tampilin
+        for(FoodCategory foodcat1 : FoodCategory.values())
+        {
+    System.out.println(foodcat1.name() + " = "+ foodcat1.toString());
+}
+       */
+      
+      food1.printData();
+      
     }
 }
