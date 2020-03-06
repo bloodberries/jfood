@@ -1,3 +1,4 @@
+import java.util.*;
 
 /**
  * Ini adalah program Jfood pada modul 2
@@ -23,7 +24,7 @@ public class JFood
         /**
          * Pembuatan object food
          */
-        Food food1 = new Food(1,"Sambel Bawang", seller1, 100000, FoodCategory.COFFEE);
+        Food food1 = new Food(1,"Sambel Bawang", seller1, 100000, FoodCategory.BEVERAGES);
         /**
          * Pembuatan object customer
          */
@@ -31,7 +32,7 @@ public class JFood
         /**
          * Pembuatan object invoice
          */
-        Invoice invoice1 = new Invoice(1, 1, "12-12-2020", customer1, 200000);
+        Invoice invoice1 = new Invoice(1, food1.getId(), "12-12-2020", customer1, food1.getPrice(), InvoiceStatus.FINISHED);
         
         
         
@@ -67,7 +68,9 @@ public class JFood
 }
        */
       
-      food1.printData();
+      //food1.printData();
+      
+      invoice1.printData();
       
     }
 }

@@ -9,25 +9,13 @@
 public class DatabaseFood
 {
     // instance variables - replace the example below with your own
-    private String[] listFood;
-    private Seller seller;
-    private Food food;
-    
-    /**
-     * Constructor for objects of class DatbaseFood
-     */
-    public DatabaseFood()
-    {
-        // initialise instance variables
-        
-       
-    }
+    private static String[] listFood;
 
     /**
      * Setter boolean addfood to DatabaseFood
      * @param food untuk mengambil status food sedang di add atau tidak
      */
-    public boolean addFood(Food food){
+    public static boolean addFood(Food food){
         return true;
     }
     
@@ -35,7 +23,7 @@ public class DatabaseFood
      * Setter boolean removefood to DatabaseFood
      * @param food untuk mengambil status food sedang di add atau ditidak
      */
-    public boolean removeFood(Food food){
+    public static boolean removeFood(Food food){
         return false;
     }
     
@@ -43,7 +31,7 @@ public class DatabaseFood
      * Getter food from DatabaseFood
      * @return null 
      */
-    public Food getFood(){
+    public static Food getFood(){
         return null;
     }
     
@@ -51,7 +39,7 @@ public class DatabaseFood
      * Getter listfood from DatabaseFood
      * @return listfood untuk mereturn array food
      */
-    public String[] getListFood(){
+    public static String[] getListFood(){
         return listFood;
     }
 }
