@@ -14,6 +14,8 @@ public class Food
     private int price;
     private FoodCategory category;
     
+    // untuk iseng save price sebelum price diubah
+    private int price_temp;
 
     /**
      * Constructor for objects of class Food
@@ -31,7 +33,13 @@ public class Food
         this.seller = seller;
         this.price = price;
         this.category = category;
+        
+        this.price_temp = this.price;
    
+    }
+    
+    public int getPrice_temp(){
+        return price_temp;
     }
 
 

@@ -21,6 +21,7 @@ public class Promo
     {
         this.id = id;
         this.code = code;
+        this.discount = discount;
         this.minPrice = minPrice;
         this.active = active;
         
