@@ -32,7 +32,7 @@ public class JFood
         /**
          * Pembuatan object invoice
          */
-        Invoice invoice1 = new Invoice(1, food1.getId(), "12-12-2020", customer1, food1.getPrice(), InvoiceStatus.FINISHED);
+         //Invoice invoice1 = new Invoice(1, food1.getId(), "12-12-2020", customer1, food1.getPrice(), InvoiceStatus.FINISHED);
         
         
         
@@ -70,7 +70,24 @@ public class JFood
       
       //food1.printData();
       
-      invoice1.printData();
+      // invoice1.printData();
       
+      Customer customer2 = new Customer(2, "Alfian", "alfianvansykes@gmail.com", "makanmulu12", "12-07-2019");
+      Promo promo2 = new Promo(2, "MAKANDULU", 40, 30000, true );
+      Food food2 = new Food(2,"Sambel Bawang", seller1, 100000, FoodCategory.BEVERAGES);
+      Food food3 = new Food(3,"Sambel Bawang", seller1, 20000, FoodCategory.BEVERAGES);
+      Food food4 = new Food(4,"Sambel Bawang", seller1, 30000, FoodCategory.BEVERAGES);
+      CashlessInvoice ci1 = new CashlessInvoice(1, food2, "03-03-2020", customer2 , InvoiceStatus.ONGOING, promo2);
+      CashlessInvoice ci2 = new CashlessInvoice(2, food3, "03-03-2020", customer2, InvoiceStatus.ONGOING);
+      CashlessInvoice ci3 = new CashlessInvoice(3, food4, "03-03-2020", customer2, InvoiceStatus.ONGOING);
+      
+      
+      ci1.setTotalPrice();
+      ci2.setTotalPrice();
+      ci3.setTotalPrice();
+      
+      ci1.printData();
+      ci2.printData();
+      ci3.printData();
     }
 }

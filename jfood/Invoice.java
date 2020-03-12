@@ -5,16 +5,17 @@
  * @author Alfian Firmansyah
  * @version 27-02-2020
  */
-public class Invoice
+public abstract class Invoice
 {
     // instance variables - replace the example below with your own
     private int id;
-    private int idFood;
+    private Food food;
     private String date;
-    private int totalPrice;
+    protected int totalPrice;
     private Customer customer;
-    private PaymentType paymentType;
-    private InvoiceStatus status;
+    private InvoiceStatus invoiceStatus;
+   // private PaymentType paymentType;
+    
 
     /**
      * Constructor for objects of class Invoice
@@ -24,14 +25,14 @@ public class Invoice
      * @param customer untuk inisiasi customer dari input obyek baru
      * @param totalPrice untuk inisiasi total price dari input obyek baru
      */
-    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice, InvoiceStatus status)
+    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
     {
         // initialise instance variables
         this.id = id;
-        this.idFood = idFood;
+        this.food = food;
         this.date = date;
         this.customer = customer;
-        this.totalPrice = totalPrice;
+        this.invoiceStatus = invoiceStatus;
     }
 
     /**
@@ -46,8 +47,8 @@ public class Invoice
     * Getter idFood Invoice
     * @return idFood
     */
-    public int getIdFood(){
-        return idFood;
+    public Food getFood(){
+        return food;
     }
     
     /**
@@ -74,12 +75,10 @@ public class Invoice
         return customer;
     }
     
-    public PaymentType getPaymentType(){
-        return paymentType;
-    }
+    public abstract PaymentType getPaymentType();
     
     public InvoiceStatus getInvoiceStatus(){
-        return status;
+        return invoiceStatus;
     }
     
     /**
@@ -94,8 +93,8 @@ public class Invoice
     * Setter idFood Invoice
     * @param idFood untuk set ke instance variable idFood
     */
-    public void setIdFoods(int idFood){
-        this.idFood = idFood;
+    public void setFood(Food food){
+        this.food = food;
     }
     
     /**
@@ -110,9 +109,7 @@ public class Invoice
     * Setter total price for Invoice
     * @param totalPrice untuk set ke instance variable totalPrice
     */
-    public void setTotalPrice(int totalPrice){
-        this.totalPrice = totalPrice;
-    }
+    public abstract void setTotalPrice();
     
     /**
     * Setter customer Invoice; Member object from class Customer
@@ -122,19 +119,17 @@ public class Invoice
         this.customer = customer;
     }
     
-    
-    public void setPaymentType(PaymentType paymentType){
-        this.paymentType = paymentType;
-    }
-    
-    public void setInvoiceStatus(InvoiceStatus status){
-        this.status = status;
+   
+    public void setInvoiceStatus(InvoiceStatus invoiceStatus){
+        this.invoiceStatus = invoiceStatus;
     }
     
     /**
     * Print data invoice
     */
-    public void printData(){
+    public abstract void printData();
+    /*
+    {
         System.out.println("================INVOICE================");
         System.out.println("ID: " + getId());
         System.out.println("Food ID: " + getIdFood());
@@ -144,4 +139,5 @@ public class Invoice
         System.out.println("Status: " + status.FINISHED);
         
     }
+    */
 }
