@@ -96,5 +96,20 @@ public class JFood
       ci1.printData(); 
       ci2.printData();
       ci3.printData();
+      
+      
+      // post test
+      CashInvoice c1 = new CashInvoice(10, food2, "13-03-2020", customer2, InvoiceStatus.FINISHED);
+      CashInvoice c2 = new CashInvoice(11, food2, "13-03-2020", customer2, InvoiceStatus.FINISHED, 15000);
+      
+      c1.setTotalPrice();
+      c2.setTotalPrice();
+      
+      System.out.println("\nPOSTTEST modul 4-------------------------------------\n\n");
+      
+      c1.printData();
+      c2.printData();
+      
+      
     }
 }
