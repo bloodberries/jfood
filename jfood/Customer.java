@@ -1,4 +1,7 @@
-
+import java.util.*;
+import java.util.regex.*;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 /**
  * Ini adalah class customer
  *
@@ -12,7 +15,7 @@ public class Customer
     private String name;
     private String email;
     private String password;
-    private String joinDate;
+    private Calendar joinDate;
     
 
     /**
@@ -23,14 +26,29 @@ public class Customer
      * @param password inisiasi password dari input obyek baru
      * @param joinDate inisiasi join date dari input obyek baru
      */
-    public Customer(int id, String name, String email, String password, String joinDate)
+    public Customer(int id, String name, String email, String password, Calendar joinDate)
     {
         // initialise instance variables
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
+        setEmail(email);
+        setPassword(password);
         this.joinDate = joinDate;
+    }
+    
+    public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth){
+        this.id = id;
+        this.name = name;
+        setEmail(email);
+        setPassword(password);
+        this.joinDate = new GregorianCalendar(year,month - 1, dayOfMonth);
+    }
+    
+    public Customer(int id, String name, String email, String password){
+        this.id = id;
+        this.name = name;
+        setEmail(email);
+        setPassword(password);
     }
 
     /**
@@ -68,7 +86,7 @@ public class Customer
     * Getter joinDate Customer
     * @return joinDate
     */
-    public String getJoinDate(){
+    public Calendar getJoinDate(){
         return joinDate;
     }
     
@@ -85,7 +103,17 @@ public class Customer
     * @param email untuk set ke instance variable email
     */
     public void setEmail(String email){
-        this.email = email;
+        String emailRegex = "^[\\w&*~-]+(?:\\.[\\w&*~-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern pat = Pattern.compile(emailRegex);
+        Matcher matcher = pat.matcher(email);
+        if (matcher.matches())
+        {
+            this.email = email;
+        }
+        else 
+        {
+            this.email = "";
+        }
     }
     
     /**
@@ -93,22 +121,46 @@ public class Customer
     * @param password untuk set ke instance variable password
     */
     public void setPassword(String password){
-        this.password = password;
+        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$";
+        Pattern pas = Pattern.compile(passwordRegex);
+        Matcher matcher = pas.matcher(password);
+        if (matcher.matches())
+        {
+            this.password = password;
+        }
+        else 
+        {
+            this.password = "";
+        }
     }
     
     /**
     * Setter joinDate Customer
     * @param joinDate untuk set ke instance variable join date
     */
-    public void setJoinDate(String joinDate){
+    public void setJoinDate(Calendar joinDate){
         this.joinDate = joinDate;
+    }
+    
+    public void setJoinDate(int year, int month, int dayOfMonth){
+        this.joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);
     }
     
     /**
     * print data customer name
     */
-    public void printData(){
+   
+    
+    public String toString(){
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
         // getName();
-        System.out.println(getName());
+       return "================Customer================\n" + 
+       "Id : " + getId() + "\n" +
+       "Nama : " + getName() + "\n" +
+       "Email : " + getEmail() + "\n" +
+       "Password : " + getPassword() + "\n" +
+       "Join Date : " + getJoinDate();
+       
     }
 }

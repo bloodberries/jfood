@@ -120,6 +120,17 @@ public class Food
     /** 
      * Printdata food
      */
+    public String toString(){
+    return "================Customer================\n" + 
+       "Id : " + getId() + "\n" +
+       "Nama : " + getName() + "\n" +
+       "Seller : " + seller.getName() + "\n" +
+       "City : " + seller.getLocation().getCity() + "\n" +
+       "Price : " + getPrice() + "\n" + 
+       "Category : " + category.toString();
+    }
+    
+    /*
     public void printData(){
        System.out.println("================FOOD================");
        System.out.println("ID: " + getId());
@@ -130,4 +141,5 @@ public class Food
        System.out.println("Category: " + getCategory());
        
     }
+    */
 }

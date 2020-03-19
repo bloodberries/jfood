@@ -1,5 +1,7 @@
 import java.util.*;
-
+import java.util.GregorianCalendar;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 /**
  * Ini adalah program Jfood pada modul 2
  * Dimana kita melakukan setter dan getter,
@@ -28,13 +30,16 @@ public class JFood
         /**
          * Pembuatan object customer
          */
+        
+        /*
         Customer customer1 = new Customer(1, "Fajri", "fajri2@gmail.com", "makanmulu12", "12-07-2019");
+        */
         /**
          * Pembuatan object invoice
          */
          //Invoice invoice1 = new Invoice(1, food1.getId(), "12-12-2020", customer1, food1.getPrice(), InvoiceStatus.FINISHED);
         
-        
+        /*
         
         seller1.printData();
         seller1.setName("Rama");
@@ -42,6 +47,7 @@ public class JFood
         
         
         food1.printData();
+        */
         System.out.println(seller1.getName());
         
         //Ini untuk fetch enum satuan     FoodCategory  
@@ -72,7 +78,7 @@ public class JFood
       
       // invoice1.printData();
       
-      Customer customer2 = new Customer(2, "Alfian", "alfianvansykes@gmail.com", "makanmulu12", "12-07-2019");
+     // Customer customer2 = new Customer(2, "Alfian", "alfianvansykes@gmail.com", "makanmulu12", "12-07-2019");
       Promo promo2 = new Promo(2, "MAKANDULU", 20000, 30000, true );
       Food food2 = new Food(2,"Sambel Bawang", seller1, 100000, FoodCategory.BEVERAGES);
       Food food3 = new Food(3,"Sambel Bawang", seller1, 40000, FoodCategory.BEVERAGES);
@@ -83,11 +89,11 @@ public class JFood
       // Skenario cashless 2 menggunakan promo, 40000 - 20000 = 20000
       // Skenario cashless 3 menggunakan promo namun tidak bisa karena hargaTotalprice hanya 25000 (tidak memenuhi syarat)
        
-      CashlessInvoice ci1 = new CashlessInvoice(1, food2, "03-03-2020", customer2 , InvoiceStatus.ONGOING);
-      CashlessInvoice ci2 = new CashlessInvoice(2, food3, "03-03-2020", customer2, InvoiceStatus.ONGOING, promo2);
-      CashlessInvoice ci3 = new CashlessInvoice(3, food4, "03-03-2020", customer2, InvoiceStatus.ONGOING, promo2);
+  //    CashlessInvoice ci1 = new CashlessInvoice(1, food2, "03-03-2020", customer2 , InvoiceStatus.ONGOING);
+    //  CashlessInvoice ci2 = new CashlessInvoice(2, food3, "03-03-2020", customer2, InvoiceStatus.ONGOING, promo2);
+   //   CashlessInvoice ci3 = new CashlessInvoice(3, food4, "03-03-2020", customer2, InvoiceStatus.ONGOING, promo2);
       
-       
+       /*
       
       ci1.setTotalPrice();
       ci2.setTotalPrice();
@@ -109,6 +115,54 @@ public class JFood
       
       c1.printData();
       c2.printData();
+      
+      */
+     
+     
+     // CASE STUDY MODUL 5
+     int year = 2020;
+    int month = 1; // January
+    int date = 1;
+
+     Date now = new Date();
+     
+   
+    
+    SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+    Date today = Calendar.getInstance().getTime();
+    Calendar calndr = Calendar.getInstance(); 
+    //  System.out.println(sdf.format(now));
+    Customer cus1 = new Customer(1, "Ramadhan", "rama@gmail.com", "3chr", calndr); 
+    Customer cus2 = new Customer(2, "Ramadhan", "rama@gmail.com", "capcapcap", 2020, 03, 19); 
+    Customer cus3 = new Customer(3, "Ramadhan", "rama@gmail.com", "capcapcap"); 
+    
+    System.out.println(cus1.toString());
+    System.out.println(cus2.toString());
+    System.out.println(cus3.toString());
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
       
       
     }

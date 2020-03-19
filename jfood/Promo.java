@@ -73,8 +73,13 @@ public class Promo
         this.active = active;
     }
     
-    public void printData(){
-    
+    public String toString(){
+        return "================Promo================\n" +
+        "Id : " + getId() + "\n" +
+        "Code : " + getCode() + "\n" +
+        "Discount : " + getDiscount() + "\n" + 
+        "MinPrice : " + getMinPrice() + "\n" + 
+        "Active Status : " + getActive() + "\n";
     }
     
 }
