@@ -1,6 +1,9 @@
 import java.util.*;
 import java.util.regex.*;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
 /**
  * Ini adalah class customer
@@ -16,7 +19,7 @@ public class Customer
     private String email;
     private String password;
     private Calendar joinDate;
-    
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
 
     /**
      * Constructor for objects of class Customer
@@ -153,14 +156,23 @@ public class Customer
     
     public String toString(){
         
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+       SimpleDateFormat dateNow = this.dateFormat;
         // getName();
-       return "================Customer================\n" + 
+        if (joinDate != null){
+            return "================Customer================\n" + 
        "Id : " + getId() + "\n" +
        "Nama : " + getName() + "\n" +
        "Email : " + getEmail() + "\n" +
        "Password : " + getPassword() + "\n" +
-       "Join Date : " + getJoinDate();
+       "JoinDate: " + dateNow.format(joinDate.getTime());
+        }else{
+            return "================Customer================\n" + 
+       "Id : " + getId() + "\n" +
+       "Nama : " + getName() + "\n" +
+       "Email : " + getEmail() + "\n" +
+       "Password : " + getPassword() + "\n";
+        }
+       
        
     }
 }

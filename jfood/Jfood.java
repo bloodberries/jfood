@@ -123,18 +123,19 @@ public class JFood
      int year = 2020;
     int month = 1; // January
     int date = 1;
-
-     Date now = new Date();
-     
-   
     
-    SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-    Date today = Calendar.getInstance().getTime();
+    // membuat obect calendar, karena parameter membutuhkan datatype Calendar
     Calendar calndr = Calendar.getInstance(); 
     //  System.out.println(sdf.format(now));
+    
+    // Skenario pertama: menggunakan parameter joinDate, dan passwordnya tidak sesuai dengan keriteria 
     Customer cus1 = new Customer(1, "Ramadhan", "rama@gmail.com", "3chr", calndr); 
-    Customer cus2 = new Customer(2, "Ramadhan", "rama@gmail.com", "capcapcap", 2020, 03, 19); 
-    Customer cus3 = new Customer(3, "Ramadhan", "rama@gmail.com", "capcapcap"); 
+    
+    // Skenario kedua: menggunakan password yang keriterianya benar, dan menggunakan GregorianCalendar dalam year, month, dan date
+    Customer cus2 = new Customer(2, "Ramadhan", "rama@gmail.com", "c1apcaPcap", year, month, date);
+    
+    // Skenario ketiga: Saya menggunakan passord yang benar, tanpa parameter calendar atau date apapun
+    Customer cus3 = new Customer(3, "Ramadhan", "rama@gmail.com", "capc1CCapcap"); 
     
     System.out.println(cus1.toString());
     System.out.println(cus2.toString());
