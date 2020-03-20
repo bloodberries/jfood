@@ -13,18 +13,18 @@ public class CashlessInvoice extends Invoice
     /**
      * Constructor for objects of class CashlessInvoice
      */
-    public CashlessInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public CashlessInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
     {
         // initialise instance variables
-        super(id, food, date, customer, invoiceStatus);
+        super(id, food, customer, invoiceStatus);
         
     }
     
     
-    public CashlessInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus, Promo promo)
+    public CashlessInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus, Promo promo)
     {
         
-        super(id, food, date, customer, invoiceStatus);
+        super(id, food, customer, invoiceStatus);
         this.promo = promo;
     }
     
@@ -45,48 +45,38 @@ public class CashlessInvoice extends Invoice
         }
     }
     
-    public void printData(){
-        //id, food, date, customer, invoiceStatus
-          
-        System.out.println("================INVOICE================");
-        System.out.println("ID: " + super.getId());
-        System.out.println("Food: " + super.getFood().getName());
-        System.out.println("Date: " + super.getDate());
-        System.out.println("Customer: " + getCustomer().getName());
-        if(promo != null && promo.getActive() == true && getFood().getPrice_temp() >= promo.getMinPrice() ){
-        System.out.println("Promo: " + promo.getCode());
-        System.out.println("Total Price: " + this.totalPrice + " Selamat Anda hemat " + promo.getDiscount());
+    public String toString(){
+       if(promo != null && promo.getActive() == true && getFood().getPrice_temp() >= promo.getMinPrice() ){         
+       return "================INVOICE================" + "\n"+
+        "ID: " + super.getId()+ "\n"+
+        "Food: " + super.getFood().getName()+ "\n"+
+        //"Date: " + super.getDate()+
+        "Customer: " + getCustomer().getName()+ "\n"+
+        "Promo: " + promo.getCode()+ "\n"+
+        "Total Price: " + this.totalPrice + " Selamat Anda hemat " + promo.getDiscount() + "\n"+
+        "Status: " + getInvoiceStatus() + "\n"+
+        "Payment Type: " + getPaymentType()+ "\n";
         }else if(promo != null && promo.getActive() == true && getFood().getPrice_temp() < promo.getMinPrice() ){
-        System.out.println("Total Price: " + this.totalPrice + "(promo tidak dapat digunakan)");
+        return "================INVOICE================"+ "\n"+
+        "ID: " + super.getId()+ "\n"+
+        "Food: " + super.getFood().getName()+ "\n"+
+       // "Date: " + super.getDate()+
+        "Customer: " + getCustomer().getName()+ "\n"+
+        "Total Price: " + this.totalPrice + "(promo tidak dapat digunakan)"+ "\n"+
+        "Status: " + getInvoiceStatus()+ "\n"+
+        "Payment Type: " + getPaymentType()+ "\n";
         }else{
-        System.out.println("Total Price: " + this.totalPrice + "(Terdapat promo code, silahkan gunakan)");
+        return "================INVOICE================"+ "\n"+
+        "ID: " + super.getId()+ "\n"+
+        "Food: " + super.getFood().getName()+ "\n"+
+        //"Date: " + super.getDate()+ "\n"+
+        "Customer: " + getCustomer().getName()+ "\n"+
+        "Total Price: " + this.totalPrice + "(Terdapat promo code, silahkan gunakan)"+ "\n"+
+        "Status: " + getInvoiceStatus()+ "\n"+
+        "Payment Type: " + getPaymentType()+ "\n";
         }
-        System.out.println("Status: " + getInvoiceStatus());
-        System.out.println("Payment Type: " + getPaymentType());
         
-       
-       /*
-       if(promo != null && promo.getActive() == true && getTotalPrice() >= promo.getMinPrice() ){
-        System.out.println("================INVOICE================");
-        System.out.println("ID: " + super.getId());
-        System.out.println("Food: " + super.getFood().getName());
-        System.out.println("Date: " + super.getDate());
-        System.out.println("Customer: " + getCustomer().getName());
-        System.out.println("Promo: " );
-        System.out.println("Total Price: " + this.totalPrice);
-        System.out.println("Status: " + getInvoiceStatus());
-        System.out.println("Payment Type: " + getPaymentType());
-        }else{
-        System.out.println("================INVOICE================");
-        System.out.println("ID: " + super.getId());
-        System.out.println("Food: " + super.getFood().getName());
-        System.out.println("Date: " + super.getDate());
-        System.out.println("Customer: " + getCustomer().getName());
-        System.out.println("Total Price: " + this.totalPrice);
-        System.out.println("Status: " + getInvoiceStatus());
-        System.out.println("Payment Type: " + getPaymentType());
-        }
-        */
+
         }
     
     

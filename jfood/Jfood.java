@@ -137,15 +137,31 @@ public class JFood
     // Skenario ketiga: Saya menggunakan passord yang benar, tanpa parameter calendar atau date apapun
     Customer cus3 = new Customer(3, "Ramadhan", "rama@gmail.com", "capc1CCapcap"); 
     
-    System.out.println(cus1.toString());
-    System.out.println(cus2.toString());
-    System.out.println(cus3.toString());
+   // System.out.println(cus1.toString());
+   // System.out.println(cus2.toString());
+   // System.out.println(cus3.toString());
      
+    
+    // MODUL 5 POST TEST
+    
+    
+    CashInvoice cash1 = new CashInvoice(10, food2, cus1, InvoiceStatus.FINISHED);
+    CashInvoice cash2 = new CashInvoice(11, food3, cus2, InvoiceStatus.FINISHED, 15000);
      
-     
-     
-     
-     
+    
+    CashlessInvoice cashless1 = new CashlessInvoice(10, food2, cus1, InvoiceStatus.FINISHED);
+    CashlessInvoice cashless2 = new CashlessInvoice(11, food3, cus2, InvoiceStatus.FINISHED, promo2);
+    
+    cash1.setTotalPrice();
+    cash2.setTotalPrice();
+    cashless1.setTotalPrice();
+    cashless2.setTotalPrice();
+    
+    
+    System.out.println(cash1.toString());
+    System.out.println(cash2.toString());
+    System.out.println(cashless1.toString());
+    System.out.println(cashless2.toString());
      
      
      

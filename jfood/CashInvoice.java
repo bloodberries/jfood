@@ -14,14 +14,14 @@ public class CashInvoice extends Invoice
     /**
      * Constructor for objects of class CashInvoice
      */
-    public CashInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
     {
-        super(id, food, date, customer, invoiceStatus);
+        super(id, food, customer, invoiceStatus);
        
     }
     
-    public CashInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus, int deliveryFee){
-        super(id, food, date, customer, invoiceStatus);
+    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus, int deliveryFee){
+        super(id, food, customer, invoiceStatus);
         this.deliveryFee = deliveryFee;
         
     }
@@ -46,16 +46,16 @@ public class CashInvoice extends Invoice
         }
     }
     
-    public void printData(){
-        System.out.println("================INVOICE================");
-        System.out.println("ID: " + super.getId());
-        System.out.println("Food: " + super.getFood().getName());
-        System.out.println("Date: " + super.getDate());
-        System.out.println("Customer: " + getCustomer().getName());
-        System.out.println("Delivery Fee: " + getDeliveryFee());
-        System.out.println("Total price: " + super.totalPrice);
-        System.out.println("Status: " + getInvoiceStatus());
-        System.out.println("Payment Type: " + getPaymentType());
+    public String toString(){
+        return "================INVOICE================"+ "\n"+
+        "ID: " + super.getId()+ "\n"+
+        "Food: " + super.getFood().getName()+ "\n"+
+        //"Date: " + super.getDate()+ "\n"+
+        "Customer: " + getCustomer().getName()+ "\n"+
+        "Delivery Fee: " + getDeliveryFee()+ "\n"+
+        "Total price: " + super.totalPrice+ "\n"+
+        "Status: " + getInvoiceStatus()+ "\n"+
+        "Payment Type: " + getPaymentType()+ "\n";
         
     }
     

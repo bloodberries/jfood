@@ -1,4 +1,10 @@
-
+import java.util.*;
+import java.util.regex.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
 /**
  * Ini adalah class Invoice
  *
@@ -10,7 +16,7 @@ public abstract class Invoice
     // instance variables - replace the example below with your own
     private int id;
     private Food food;
-    private String date;
+    private Calendar date;
     protected int totalPrice;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
@@ -25,12 +31,13 @@ public abstract class Invoice
      * @param customer untuk inisiasi customer dari input obyek baru
      * @param totalPrice untuk inisiasi total price dari input obyek baru
      */
-    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
     {
         // initialise instance variables
         this.id = id;
         this.food = food;
-        this.date = date;
+        Calendar now = Calendar.getInstance(); 
+        this.date = now;
         this.customer = customer;
         this.invoiceStatus = invoiceStatus;
     }
@@ -55,7 +62,7 @@ public abstract class Invoice
     * Getter date Invoice
     * @return date
     */
-    public String getDate(){
+    public Calendar getDate(){
         return date;
     }
     
@@ -101,8 +108,13 @@ public abstract class Invoice
     * Setter date Invoice
     * @param date untuk set ke instance variable date
     */
-    public void setDate(String date){
-        this.date = date;
+    public Calendar setDate(Calendar date){
+        return date;//this.date = date;
+    }
+    
+    public Calendar setDate(int year, int month, int dayOfMonth){
+        //this.date = date;
+        return date;
     }
     
     /**
@@ -127,17 +139,7 @@ public abstract class Invoice
     /**
     * Print data invoice
     */
-    public abstract void printData();
-    /*
-    {
-        System.out.println("================INVOICE================");
-        System.out.println("ID: " + getId());
-        System.out.println("Food ID: " + getIdFood());
-        System.out.println("Date: " + getDate());
-        System.out.println("Customer: " + customer.getName());
-        System.out.println("Total Price: " + getTotalPrice());
-        System.out.println("Status: " + status.FINISHED);
-        
-    }
-    */
+   public String toString(){
+        return null;
+    } 
 }
