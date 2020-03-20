@@ -1,4 +1,10 @@
-
+import java.util.*;
+import java.util.regex.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
 /**
  * Write a description of class CashInvoice here.
  *
@@ -10,6 +16,7 @@ public class CashInvoice extends Invoice
     // instance variables - replace the example below with your own
     private static final PaymentType PAYMENT_TYPE = PaymentType.CASH;
     private int deliveryFee = 0;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
     
     /**
      * Constructor for objects of class CashInvoice
@@ -47,10 +54,11 @@ public class CashInvoice extends Invoice
     }
     
     public String toString(){
+        SimpleDateFormat dateNow = this.dateFormat;
         return "================INVOICE================"+ "\n"+
         "ID: " + super.getId()+ "\n"+
         "Food: " + super.getFood().getName()+ "\n"+
-        //"Date: " + super.getDate()+ "\n"+
+        "Date: " + dateNow.format(super.getDate().getTime())+ "\n"+
         "Customer: " + getCustomer().getName()+ "\n"+
         "Delivery Fee: " + getDeliveryFee()+ "\n"+
         "Total price: " + super.totalPrice+ "\n"+
