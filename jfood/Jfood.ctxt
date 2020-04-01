@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=JFood
-comment0.text=\r\n\ Ini\ adalah\ program\ Jfood\ pada\ modul\ 2\r\n\ Dimana\ kita\ melakukan\ setter\ dan\ getter,\r\n\ Pembuatan\ Object,\ dengan\ mengakses\ lewat\ argumen\ class\ main\r\n\ \r\n\ @author\ Alfian\ Firmansyah\r\n\ @version\ 27-2-2020\r\n
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-numComments=2
