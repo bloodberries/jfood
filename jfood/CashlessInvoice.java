@@ -58,7 +58,7 @@ public class CashlessInvoice extends Invoice
        return "================INVOICE================" + "\n"+
         "ID: " + super.getId()+ "\n"+
         "Food: " + super.getFood().getName()+ "\n"+
-        "Date: " + dateNow.format(super.getDate().getTime())+
+        "Date: " + dateNow.format(super.getDate().getTime())+"\n"+
         "Customer: " + getCustomer().getName()+ "\n"+
         "Promo: " + promo.getCode()+ "\n"+
         "Total Price: " + this.totalPrice + " Selamat Anda hemat " + promo.getDiscount() + "\n"+
