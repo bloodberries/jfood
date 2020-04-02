@@ -21,14 +21,14 @@ public class CashInvoice extends Invoice
     /**
      * Constructor for objects of class CashInvoice
      */
-    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer)
     {
-        super(id, food, customer, invoiceStatus);
+        super(id, foods, customer);
        
     }
     
-    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus, int deliveryFee){
-        super(id, food, customer, invoiceStatus);
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer, int deliveryFee){
+        super(id, foods, customer);
         this.deliveryFee = deliveryFee;
         
     }
@@ -45,19 +45,37 @@ public class CashInvoice extends Invoice
         this.deliveryFee = deliveryFee;
     }
     
-    public void setTotalPrice(){
-        if(deliveryFee != 0){
-            super.totalPrice = super.getFood().getPrice() + getDeliveryFee();
-        }else{
-            super.totalPrice = super.getFood().getPrice();
+//    public void setTotalPrice(){
+//        if(deliveryFee != 0){
+//            super.totalPrice = super.getFoods().getPrice() + getDeliveryFee();
+//        }else{
+//            super.totalPrice = super.getFoods().getPrice();
+//        }
+//    }
+
+    public void setTotalPrice() {
+        ArrayList<Food> listFood = super.getFoods();
+
+
+        int total = 0;
+        for (Food food: listFood) {
+            total += food.getPrice();
+        }
+
+
+        if (deliveryFee > 0) {
+            super.totalPrice = total + deliveryFee;
+        } else {
+            super.totalPrice = total;
         }
     }
-    
+
+    /*
     public String toString(){
         SimpleDateFormat dateNow = this.dateFormat;
         return "================INVOICE================"+ "\n"+
         "ID: " + super.getId()+ "\n"+
-        "Food: " + super.getFood().getName()+ "\n"+
+        "Foods: " + super.getFoods().getName()+ "\n"+
         "Date: " + dateNow.format(super.getDate().getTime())+ "\n"+
         "Customer: " + getCustomer().getName()+ "\n"+
         "Delivery Fee: " + getDeliveryFee()+ "\n"+
@@ -66,6 +84,27 @@ public class CashInvoice extends Invoice
         "Payment Type: " + getPaymentType()+ "\n";
         
     }
-    
-    
+    */
+    public String toString(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+        String strFoodList = "";
+        ArrayList<Food> list = super.getFoods();
+        for (Food food: list) {
+            strFoodList += food.getName() + "\n";
+        }
+
+        String ret = "\nId: " + super.getId() + "\n" +
+                "Food Name: \n" + strFoodList+ "\n" +
+                "Date: " + formatter.format(super.getDate().getTime()) + "\n" +
+                "Total Price: " + super.totalPrice + "\n" +
+                "Customer Name: " + super.getCustomer().getName() + "\n" +
+                "Invoice Status: " + super.getInvoiceStatus().toString() + "\n" +
+                "Payment Type: " + PAYMENT_TYPE.toString();
+
+        return ret;
+    }
+
+
+
 }

@@ -15,7 +15,7 @@ public abstract class Invoice
 {
     // instance variables - replace the example below with your own
     private int id;
-    private Food food;
+    private ArrayList<Food> foods;
     private Calendar date;
     protected int totalPrice;
     private Customer customer;
@@ -31,15 +31,16 @@ public abstract class Invoice
      * @param customer untuk inisiasi customer dari input obyek baru
      * @param totalPrice untuk inisiasi total price dari input obyek baru
      */
-    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, ArrayList<Food> foods, Customer customer)
     {
         // initialise instance variables
         this.id = id;
-        this.food = food;
+        this.foods = foods;
         Calendar now = Calendar.getInstance(); 
         this.date = now;
         this.customer = customer;
-        this.invoiceStatus = invoiceStatus;
+        this.invoiceStatus = InvoiceStatus.ONGOING;
+
     }
 
     /**
@@ -54,8 +55,8 @@ public abstract class Invoice
     * Getter idFood Invoice
     * @return idFood
     */
-    public Food getFood(){
-        return food;
+    public ArrayList<Food> getFoods(){
+        return foods;
     }
     
     /**
@@ -100,8 +101,8 @@ public abstract class Invoice
     * Setter idFood Invoice
     * @param idFood untuk set ke instance variable idFood
     */
-    public void setFood(Food food){
-        this.food = food;
+    public void setFoods(ArrayList<Food> foods){
+        this.foods = foods;
     }
     
     /**

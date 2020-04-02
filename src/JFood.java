@@ -48,23 +48,23 @@ public class JFood
         
         food1.printData();
         */
-        System.out.println(seller1.getName());
+//        System.out.println(seller1.getName());
         
         //Ini untuk fetch enum satuan     FoodCategory  
-        System.out.println(FoodCategory.BEVERAGES.toString());
-        System.out.println(FoodCategory.COFFEE.toString());
-        System.out.println(FoodCategory.WESTERN.toString());
-        System.out.println(FoodCategory.SNACKS.toString());
-        System.out.println(FoodCategory.RICE.toString());
-        System.out.println(FoodCategory.NOODLES.toString());
-        System.out.println(FoodCategory.BAKERY.toString());
-        System.out.println(FoodCategory.JAPANESE.toString());
+//        System.out.println(FoodCategory.BEVERAGES.toString());
+//        System.out.println(FoodCategory.COFFEE.toString());
+//        System.out.println(FoodCategory.WESTERN.toString());
+//        System.out.println(FoodCategory.SNACKS.toString());
+//        System.out.println(FoodCategory.RICE.toString());
+//        System.out.println(FoodCategory.NOODLES.toString());
+//        System.out.println(FoodCategory.BAKERY.toString());
+//        System.out.println(FoodCategory.JAPANESE.toString());
         
        // System.out.println(FoodCategory.BANDUNG.toString());
        
        // untuk fetch PaymentType
-        System.out.println(PaymentType.CASHLESS.toString());
-        System.out.println(PaymentType.CASH.toString());
+//        System.out.println(PaymentType.CASHLESS.toString());
+//        System.out.println(PaymentType.CASH.toString());
         
         /*
         // untuk iterate enum constantnya supaya bisa di tampilin
@@ -81,8 +81,8 @@ public class JFood
      // Customer customer2 = new Customer(2, "Alfian", "alfianvansykes@gmail.com", "makanmulu12", "12-07-2019");
       Promo promo2 = new Promo(2, "MAKANDULU", 20000, 30000, true );
       Food food2 = new Food(2,"Sambel Bawang", seller1, 100000, FoodCategory.BEVERAGES);
-      Food food3 = new Food(3,"Sambel Bawang", seller1, 40000, FoodCategory.BEVERAGES);
-      Food food4 = new Food(4,"Sambel Bawang", seller1, 25000, FoodCategory.BEVERAGES);
+      Food food3 = new Food(3,"Sambel SETAN", seller1, 40000, FoodCategory.BEVERAGES);
+      Food food4 = new Food(4,"Sambel IJO", seller1, 25000, FoodCategory.BEVERAGES);
       
       
       // Skenario cashless 1 tidak menggunakan promo
@@ -144,27 +144,65 @@ public class JFood
     
     // MODUL 5 POST TEST
     
-    
-    CashInvoice cash1 = new CashInvoice(10, food2, cus1, InvoiceStatus.FINISHED);
-    CashInvoice cash2 = new CashInvoice(11, food3, cus2, InvoiceStatus.FINISHED, 15000);
-     
-    
-    CashlessInvoice cashless1 = new CashlessInvoice(10, food2, cus1, InvoiceStatus.FINISHED);
-    CashlessInvoice cashless2 = new CashlessInvoice(11, food3, cus2, InvoiceStatus.FINISHED, promo2);
-    
-    cash1.setTotalPrice();
-    cash2.setTotalPrice();
-    cashless1.setTotalPrice();
-    cashless2.setTotalPrice();
-    
-    
-    System.out.println(cash1.toString());
-    System.out.println(cash2.toString());
-    System.out.println(cashless1.toString());
-    System.out.println(cashless2.toString());
-     
-     
-     
+//
+//    CashInvoice cash1 = new CashInvoice(10, food2, cus1, InvoiceStatus.FINISHED);
+//    CashInvoice cash2 = new CashInvoice(11, food3, cus2, InvoiceStatus.FINISHED, 15000);
+//
+//
+//    CashlessInvoice cashless1 = new CashlessInvoice(10, food2, cus1, InvoiceStatus.FINISHED);
+//    CashlessInvoice cashless2 = new CashlessInvoice(11, food3, cus2, InvoiceStatus.FINISHED, promo2);
+//
+//    cash1.setTotalPrice();
+//    cash2.setTotalPrice();
+//    cashless1.setTotalPrice();
+//    cashless2.setTotalPrice();
+//
+//
+//    System.out.println(cash1.toString());
+//    System.out.println(cash2.toString());
+//    System.out.println(cashless1.toString());
+//    System.out.println(cashless2.toString());
+
+
+        // untuk CS MOdul 6
+//        Location location2 = new Location("Jakarta Barat", "Makanan dari Betawi", "Jakarta");
+        DatabaseSeller.addSeller(seller1);
+        ArrayList<Customer> customerlist = new ArrayList<Customer>();
+        // Skenario pertama: menggunakan parameter joinDate, dan passwordnya tidak sesuai dengan keriteria
+        Customer cust1 = new Customer(1, "Alfian", "alfian@gmail.com", "3chr", calndr);
+
+        // Skenario kedua: menggunakan password yang keriterianya benar, dan menggunakan GregorianCalendar dalam year, month, dan date
+        Customer cust2 = new Customer(2, "Alfian", "alfian@gmail.com", "c1apcaPcap", year, month, date);
+
+        // Skenario ketiga: Saya menggunakan passord yang benar, tanpa parameter calendar atau date apapun
+        Customer cust3 = new Customer(3, "Ramadhan", "rama@gmail.com", "capc1CCapcap");
+
+        DatabaseCustomer.addCustomer(cust1);
+        DatabaseCustomer.addCustomer(cust2);
+        DatabaseCustomer.addCustomer(cust3);
+
+
+
+        for (Customer customer: DatabaseCustomer.getCustomerDatabase()) {
+            System.out.println(customer.getName());
+        }
+
+        DatabaseFood.addFood(new Food(1, "Ayam Bakar", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 20000, FoodCategory.BEVERAGES));
+        DatabaseFood.addFood(new Food(2, "Soto Ayam", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 10000, FoodCategory.JAPANESE));
+        DatabaseFood.addFood(new Food(3, "Sushi", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 10000, FoodCategory.JAPANESE));
+
+        ArrayList<Food> riceCategory = DatabaseFood.getFoodByCategory(FoodCategory.RICE);
+        ArrayList<Food> japaneseCategory = DatabaseFood.getFoodByCategory(FoodCategory.JAPANESE);;
+
+        for (Food food: riceCategory) {
+            System.out.println(food.getName());
+        }
+        for (Food food: japaneseCategory) {
+            System.out.println(food.getName());
+        }
+
+
+
      
      
      
