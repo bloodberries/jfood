@@ -15,9 +15,6 @@ public class DatabaseFood
     private static int lastId = 0;
 
 
-
-
-
     /**
      * <h1> This method used for adding food to the database</h1>
      * @param food

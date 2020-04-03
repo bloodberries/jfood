@@ -1,9 +1,4 @@
 import java.util.*;
-import java.util.regex.*;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
 /**
  * Write a description of class CashlessInvoice here.
@@ -111,7 +106,7 @@ public void setTotalPrice() {
             strFoodList += food.getName() + "\n";
         }
 
-        String ret = "\nId: " + super.getId() + "\n" +
+        String ret = "\nId: " + super.getId(id) + "\n" +
                 "Food Name: \n" + strFoodList+ "\n" +
                 "Date: " + formatter.format(super.getDate().getTime()) + "\n" +
                 "Total Price: " + super.totalPrice + "\n" +

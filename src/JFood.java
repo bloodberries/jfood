@@ -201,6 +201,17 @@ public class JFood
             System.out.println(food.getName());
         }
 
+        // POST TEST
+
+        Promo promo1 = new Promo(2, "MAKANDULU", 20000, 30000, true );
+        Promo promo3 = new Promo(3, "MAKANDULU", 15000, 25000, true );
+
+        DatabasePromo.addPromo(promo1);
+        DatabasePromo.addPromo(promo3);
+        ArrayList<Promo> print = DatabasePromo.getPromoDatabase();
+        for (Promo promo: print) {
+            System.out.println(promo.toString());
+        }
 
 
      

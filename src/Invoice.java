@@ -1,10 +1,6 @@
 import java.util.*;
-import java.util.regex.*;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.text.SimpleDateFormat;
+
 /**
  * Ini adalah class Invoice
  *
@@ -46,9 +42,10 @@ public abstract class Invoice
     /**
     * Getter id Invoice
     * @return id
+     * @param id
     */
-    public int getId(){
-        return id;
+    public int getId(int id){
+        return this.id;
     }
     
     /**
@@ -142,5 +139,7 @@ public abstract class Invoice
     */
    public String toString(){
         return null;
-    } 
+    }
+
+    public abstract int getId();
 }

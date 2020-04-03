@@ -12,14 +12,9 @@ public class DatabasePromo{
 
    private ArrayList<Promo> PROMO_DATABASE;
    private int lastId = 0;
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
 
-    public ArrayList<Promo> getPromoDatabase() {
+
+    public static ArrayList<Promo> getPromoDatabase() {
         return PROMO_DATABASE;
     }
     public int getLastId(){
@@ -44,7 +39,7 @@ public class DatabasePromo{
         return null;
     }
 
-    public boolean AddPromo(Promo promo){
+    public static boolean addPromo(Promo promo){
         PROMO_DATABASE.add(promo);
         lastId = promo.getId();
 
