@@ -44,7 +44,7 @@ public abstract class Invoice
     * @return id
      * @param id
     */
-    public int getId(int id){
+    public int getId(){
         return this.id;
     }
     
@@ -137,9 +137,7 @@ public abstract class Invoice
     /**
     * Print data invoice
     */
-   public String toString(){
-        return null;
-    }
+   public abstract String toString();
 
-    public abstract int getId();
+
 }

@@ -26,28 +26,25 @@ public class DatabaseCustomer
      * An example of a method - replace this comment with your own
      *
      */
-    public static boolean addCustomer(Customer customer) {
-        boolean sameEmailBuff = false;
-        for (Customer buff: CUSTOMER_DATABASE) {
-            if (customer.getEmail() == buff.getEmail()) {
-                sameEmailBuff = true;
+    public static boolean addCustomer(Customer customer)throws EmailAlreadyExistsException {
+        for (Customer _customer : CUSTOMER_DATABASE) {
+            if(_customer.getEmail().equals(customer.getEmail())) {
+                throw new EmailAlreadyExistsException(customer);
             }
         }
-
-        if (!sameEmailBuff) {
-            CUSTOMER_DATABASE.add(customer);
-            lastId = CUSTOMER_DATABASE.indexOf(customer);
-        }
-        return false;
+        CUSTOMER_DATABASE.add(customer);
+        lastId = customer.getId();
+        return true;
     }
 
-    public static boolean removeCustomer(int id) {
-        Customer customer = CUSTOMER_DATABASE.get(id);
-        if (customer != null) {
-            CUSTOMER_DATABASE.remove(customer);
-            return true;
+    public static boolean removeCustomer(int id) throws CustomerNotFoundException {
+        for(Customer customer : CUSTOMER_DATABASE) {
+            if(customer.getId() == id) {
+                CUSTOMER_DATABASE.remove(customer);
+                return true;
+            }
         }
-        return false;
+        throw new CustomerNotFoundException(id);
     }
 
 
@@ -60,12 +57,12 @@ public class DatabaseCustomer
         return lastId;
     }
 
-    public static Customer getCustomerById(int id) {
+    public static Customer getCustomerById(int id) throws CustomerNotFoundException  {
         Customer customer = CUSTOMER_DATABASE.get(id);
         if (customer != null) {
             return customer;
         }
-        return null;
+        throw new CustomerNotFoundException(id);
     }
 
 }

@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 public class JFood
 {
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws PromoCodeAlreadyExistsException, EmailAlreadyExistsException, SellerNotFoundException, CustomerNotFoundException, FoodNotFoundException {
         
         /**
          * Pembuatan object location
@@ -165,27 +165,27 @@ public class JFood
 
 
         // untuk CS MOdul 6
-//        Location location2 = new Location("Jakarta Barat", "Makanan dari Betawi", "Jakarta");
+        Location location2 = new Location("Jakarta Barat", "Makanan dari Betawi", "Jakarta");
         DatabaseSeller.addSeller(seller1);
-        ArrayList<Customer> customerlist = new ArrayList<Customer>();
-        // Skenario pertama: menggunakan parameter joinDate, dan passwordnya tidak sesuai dengan keriteria
-        Customer cust1 = new Customer(1, "Alfian", "alfian@gmail.com", "3chr", calndr);
+//        ArrayList<Customer> customerlist = new ArrayList<Customer>();
+//        // Skenario pertama: menggunakan parameter joinDate, dan passwordnya tidak sesuai dengan keriteria
+//        Customer cust1 = new Customer(1, "Alfian", "alfian@gmail.com", "3chr", calndr);
+//
+//        // Skenario kedua: menggunakan password yang keriterianya benar, dan menggunakan GregorianCalendar dalam year, month, dan date
+//        Customer cust2 = new Customer(2, "Alfian", "alfian@gmail.com", "c1apcaPcap", year, month, date);
+//
+//        // Skenario ketiga: Saya menggunakan passord yang benar, tanpa parameter calendar atau date apapun
+//        Customer cust3 = new Customer(3, "Ramadhan", "rama@gmail.com", "capc1CCapcap");
+//
+//        DatabaseCustomer.addCustomer(cust1);
+//        DatabaseCustomer.addCustomer(cust2);
+//        DatabaseCustomer.addCustomer(cust3);
 
-        // Skenario kedua: menggunakan password yang keriterianya benar, dan menggunakan GregorianCalendar dalam year, month, dan date
-        Customer cust2 = new Customer(2, "Alfian", "alfian@gmail.com", "c1apcaPcap", year, month, date);
-
-        // Skenario ketiga: Saya menggunakan passord yang benar, tanpa parameter calendar atau date apapun
-        Customer cust3 = new Customer(3, "Ramadhan", "rama@gmail.com", "capc1CCapcap");
-
-        DatabaseCustomer.addCustomer(cust1);
-        DatabaseCustomer.addCustomer(cust2);
-        DatabaseCustomer.addCustomer(cust3);
 
 
-
-        for (Customer customer: DatabaseCustomer.getCustomerDatabase()) {
-            System.out.println(customer.getName());
-        }
+//        for (Customer customer: DatabaseCustomer.getCustomerDatabase()) {
+//            System.out.println(customer.getName());
+//        }
 
         DatabaseFood.addFood(new Food(1, "Ayam Bakar", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 20000, FoodCategory.BEVERAGES));
         DatabaseFood.addFood(new Food(2, "Soto Ayam", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 10000, FoodCategory.JAPANESE));
@@ -203,33 +203,67 @@ public class JFood
 
         // POST TEST
 
-        Promo promo1 = new Promo(2, "MAKANDULU", 20000, 30000, true );
-        Promo promo3 = new Promo(3, "MAKANDULU", 15000, 25000, true );
+//        Promo promo1 = new Promo(2, "MAKANDULU", 20000, 30000, true );
+//        Promo promo3 = new Promo(3, "MAKANDULU", 15000, 25000, true );
 
-        DatabasePromo.addPromo(promo1);
-        DatabasePromo.addPromo(promo3);
-        ArrayList<Promo> print = DatabasePromo.getPromoDatabase();
-        for (Promo promo: print) {
-            System.out.println(promo.toString());
+        DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId()+1, "TEST1", 20000, 30000, false ));
+        DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId()+1, "TEST2", 15000, 25000, false ));
+//        for(Promo promo : DatabasePromo.getPromoDatabase()) {
+//            System.out.println(promo);
+//            System.out.println();
+//        }
+
+
+//        CASE STUDY MODUL 7
+
+        DatabaseSeller.addSeller(seller1);
+        ArrayList<Customer> customerlist = new ArrayList<Customer>();
+
+//        Customer cust1 = new Customer(DatabaseCustomer.getLastId()+1, "Alfian", "alfian@gmail.com", "3chr", calndr);
+
+//        Customer cust2 = new Customer(DatabaseCustomer.getLastId()+1, "Alfian", "alfian@gmail.com", "c1apcaPcap", year, month, date);
+
+        Customer cust3 = new Customer(1, "Ramadhan", "rama@gmail.com", "capc1CCapcap");
+
+        Customer cust4 = new Customer(2, "Ramadhan", "rama321@gmail.com", "capc1CCapcap");
+
+//        DatabaseCustomer.addCustomer(cust1);
+//        DatabaseCustomer.addCustomer(cust2);
+        DatabaseCustomer.addCustomer(cust3);
+        DatabaseCustomer.addCustomer(cust4);
+        for(Customer customer : DatabaseCustomer.getCustomerDatabase()) {
+            System.out.println(customer);
+            System.out.println();
         }
 
 
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-      
-      
+
+        Promo prm1 = new Promo(DatabasePromo.getLastId()+1, "MAKANDULU1", 20000, 30000, true );
+        Promo prm2 = new Promo(DatabasePromo.getLastId()+1, "MAKANDULU", 20000, 30000, true );
+        DatabasePromo.addPromo(prm1);
+        DatabasePromo.addPromo(prm2);
+
+
+        for(Promo promo : DatabasePromo.getPromoDatabase()) {
+            System.out.println(promo);
+            System.out.println();
+        }
+
+
+        CashlessInvoice ci1 = new CashlessInvoice(1, DatabaseFood.getFoodById(2), DatabaseCustomer.getCustomerById(DatabaseCustomer.getLastId()));
+        CashlessInvoice ci2 = new CashlessInvoice(2, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(DatabaseCustomer.getLastId()));
+        CashlessInvoice ci3 = new CashlessInvoice(3, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(DatabaseCustomer.getLastId()));
+
+        DatabaseInvoice.addInvoice(ci1);
+        DatabaseInvoice.addInvoice(ci2);
+        DatabaseInvoice.addInvoice(ci3);
+
+
+
+
+
+
+
+
     }
 }

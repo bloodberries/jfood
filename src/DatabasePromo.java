@@ -7,79 +7,82 @@ import java.util.ArrayList;
  * @author Alfian Firmansyah
  * @version 1.0
  */
-public class DatabasePromo{
-    // instance variables - replace the example below with your own
+public class DatabasePromo
+{
+    private static ArrayList<Promo> PROMO_DATABASE=new ArrayList<Promo>();
+    private static int lastId=0;
 
-   private ArrayList<Promo> PROMO_DATABASE;
-   private int lastId = 0;
-
-
-    public static ArrayList<Promo> getPromoDatabase() {
-        return PROMO_DATABASE;
-    }
-    public int getLastId(){
-        return lastId;
-    }
-    public Promo getPromoById(int id){
-        for(Promo i : PROMO_DATABASE)
-        {
-            if(i.getId() == id)
-                return i;
+    public static boolean addPromo(Promo promo)throws PromoCodeAlreadyExistsException
+    {
+        for (Promo _promo : PROMO_DATABASE) {
+            if (_promo.getCode().equals(promo.getCode())){
+                throw new PromoCodeAlreadyExistsException(promo);
+            }
         }
-
-        return null;
-    }
-    public Promo getPromoByCode(String code){
-        for(Promo i : PROMO_DATABASE)
-        {
-            if(i.getCode() == code)
-                return i;
-        }
-
-        return null;
-    }
-
-    public static boolean addPromo(Promo promo){
         PROMO_DATABASE.add(promo);
         lastId = promo.getId();
-
         return true;
     }
 
-    public boolean activePromo(int id){
-        for(Promo i : PROMO_DATABASE)
-        {
-            if(i.getId() == id)
-                i.setActive(true);
-            return true;
+    public static boolean removePromo(int id)throws PromoNotFoundException
+    {
+        for(Promo promo : PROMO_DATABASE) {
+            if(promo.getId() == id) {
+                PROMO_DATABASE.remove(promo);
+                return true;
+            }
         }
-
-        return false;
+        throw new PromoNotFoundException(id);
     }
 
-    public boolean deactivePromo(int id){
-        for(Promo i : PROMO_DATABASE)
-        {
-            if(i.getId() == id)
-                i.setActive(false);
-            return true;
+    public static Promo getPromoById(int id)throws PromoNotFoundException
+    {
+        for(Promo promo : PROMO_DATABASE) {
+            if(promo.getId() == id) {
+                return promo;
+            }
         }
-
-        return false;
+       throw new PromoNotFoundException(id);
     }
 
-    public boolean removePromo(int id){
-        for(Promo i : PROMO_DATABASE)
-        {
-            if(i.getId() == id)
-            {
-                PROMO_DATABASE.remove(i);
+    public static Promo getPromoByCode(String code)
+    {
+        for(Promo promo : PROMO_DATABASE) {
+            if(promo.getCode().equals(code)) {
+                return promo;
+            }
+        }
+        return null;
+    }
+
+    public static boolean activatePromo(int id)
+    {
+        for(Promo promo : PROMO_DATABASE) {
+            if(promo.getId() == id) {
+                promo.setActive(true);
                 return true;
             }
         }
         return false;
     }
 
+    public static boolean deactivatePromo(int id)
+    {
+        for(Promo promo : PROMO_DATABASE) {
+            if(promo.getId() == id) {
+                promo.setActive(false);
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public static ArrayList<Promo> getPromoDatabase() {
+        return PROMO_DATABASE;
+    }
 
+    public static int getLastId()
+    {
+        return lastId;
+    }
 }

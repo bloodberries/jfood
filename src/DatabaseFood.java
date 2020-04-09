@@ -21,12 +21,9 @@ public class DatabaseFood
      * @return boolean
      */
     public static boolean addFood(Food food) {
-
-        if (FOOD_DATABASE.add(food)) {
-            FOOD_DATABASE.indexOf(food);
-            return true;
-        }
-        return false;
+        FOOD_DATABASE.add(food);
+        lastId=food.getId();
+        return true;
     }
 
 
@@ -34,13 +31,14 @@ public class DatabaseFood
 
      * @return boolean
      */
-    public static boolean removeFood(int id) {
-        Food food = FOOD_DATABASE.get(id);
-        if (food != null) {
-            FOOD_DATABASE.remove(food);
-            return true;
+    public static boolean removeFood(int id)throws FoodNotFoundException {
+        for(Food food : FOOD_DATABASE) {
+            if(food.getId() == id) {
+                FOOD_DATABASE.remove(food);
+                return true;
+            }
         }
-        return false;
+        throw new FoodNotFoundException(id);
     }
 
 
@@ -48,33 +46,35 @@ public class DatabaseFood
      * <h1>This method will return the food object</h1>
      * @return Food object
      */
-    public static Food getFoodById(int idx){
-        Food food = FOOD_DATABASE.get(idx);
-
-        if (food != null) {
-            return food;
-        }
-        return null;
-    }
-
-    public static ArrayList<Food> getFoodBySeller(int idseller) {
-        ArrayList<Food> ret = new ArrayList<>();
-        for (Food food: FOOD_DATABASE) {
-            if (food.getSeller().getId() == idseller) {
-                ret.add(food);
+    public static Food getFoodById(int id) throws FoodNotFoundException
+    {
+        for(Food food : FOOD_DATABASE) {
+            if(food.getId() == id) {
+                return food;
             }
         }
-        return ret;
+        throw new FoodNotFoundException(id);
+    }
+
+    public static ArrayList<Food> getFoodBySeller(int idSeller) throws SellerNotFoundException {
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        Seller seller = DatabaseSeller.getSellerById(idSeller);
+        for(Food food : FOOD_DATABASE) {
+            if(food.getSeller().equals(seller)) {
+                foodList.add(food);
+            }
+        }
+        return foodList;
     }
 
     public static ArrayList<Food> getFoodByCategory(FoodCategory category) {
-        ArrayList<Food> ret = new ArrayList<>();
-        for (Food food: FOOD_DATABASE) {
-            if (food.getCategory() == category) {
-                ret.add(food);
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        for(Food food : FOOD_DATABASE) {
+            if(food.getCategory().equals(category)) {
+                foodList.add(food);
             }
         }
-        return ret;
+        return foodList;
     }
     /**
      * <h1>This method will return a list of food as an array of string</h1>

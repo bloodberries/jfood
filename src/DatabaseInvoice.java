@@ -13,55 +13,55 @@ public class DatabaseInvoice {
     }
 
     public Invoice getInvoiceById(int id){
-            Invoice invoice = INVOICE_DATABASE.get(id);
-
-            if (invoice != null) {
+        for(Invoice invoice : INVOICE_DATABASE) {
+            if(invoice.getId()==id) {
                 return invoice;
             }
-            return null;
-
-    }
-
-    public ArrayList<Invoice> getInvoiceByCustomer(int customerId){
-        Invoice invoice = INVOICE_DATABASE.get(customerId);
-        ArrayList<Invoice> getInvoice = new ArrayList<>();
-        if (invoice != null) {
-            getInvoice.add(invoice);
-            return getInvoice;
         }
         return null;
+
     }
 
-    public boolean addInvoice(Invoice invoice){
-        if(invoice.getInvoiceStatus() != InvoiceStatus.ONGOING){
-        INVOICE_DATABASE.add(invoice);
-        lastId = INVOICE_DATABASE.indexOf(invoice);
-        return true;
+    public ArrayList<Invoice> getInvoiceByCustomer(int customerId) throws CustomerNotFoundException {
+        ArrayList<Invoice> invoiceList = new ArrayList<>();
+        Customer customer = DatabaseCustomer.getCustomerById(customerId);
+        for(Invoice invoice : INVOICE_DATABASE)
+        {
+            if(invoice.getCustomer().equals(customer)){
+                invoiceList.add(invoice);
+            }
         }
-        return false;
+        return invoiceList;
+    }
+
+    public static boolean addInvoice(Invoice invoice){
+        int customerId = invoice.getCustomer().getId();
+        for (Invoice _invoice : INVOICE_DATABASE) {
+            if (_invoice.getCustomer().getId() == customerId && _invoice.getInvoiceStatus() == InvoiceStatus.ONGOING){
+                return false;
+            }
+        }
+        INVOICE_DATABASE.add(invoice);
+        lastId = invoice.getId();
+        return true;
     }
 
     public boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus){
-//        Invoice invoice = INVOICE_DATABASE.get(id);
-//        InvoiceStatus statusInvoice = INVOICE_DATABASE.get();
-
-
-        for(Invoice i : INVOICE_DATABASE) {
-            if ((i.getInvoiceStatus() == InvoiceStatus.ONGOING &&  i.getId() == id)) {
-                i.setInvoiceStatus(invoiceStatus);
+        for(Invoice invoice : INVOICE_DATABASE) {
+            if(invoice.getId() == id && invoice.getInvoiceStatus().equals(InvoiceStatus.ONGOING)) {
+                invoice.setInvoiceStatus(invoiceStatus);
                 return true;
-
             }
         }
         return false;
-
     }
 
     public static boolean removeInvoice(int id) {
-        Invoice invoice = INVOICE_DATABASE.get(id);
-        if (invoice != null) {
-            INVOICE_DATABASE.remove(invoice);
-            return true;
+        for(Invoice invoice : INVOICE_DATABASE) {
+            if(invoice.getId()==id) {
+                INVOICE_DATABASE.remove(invoice);
+                return true;
+            }
         }
         return false;
     }
