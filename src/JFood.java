@@ -219,22 +219,26 @@ public class JFood
         DatabaseSeller.addSeller(seller1);
         ArrayList<Customer> customerlist = new ArrayList<Customer>();
 
-//        Customer cust1 = new Customer(DatabaseCustomer.getLastId()+1, "Alfian", "alfian@gmail.com", "3chr", calndr);
+        Customer cust1 = new Customer(1, "Alfian", "alfiana@gmail.com", "3chr", calndr);
 
-//        Customer cust2 = new Customer(DatabaseCustomer.getLastId()+1, "Alfian", "alfian@gmail.com", "c1apcaPcap", year, month, date);
+        Customer cust2 = new Customer(2, "Alfian", "alfian@gmail.com", "c1apcaPcap", year, month, date);
 
-        Customer cust3 = new Customer(1, "Ramadhan", "rama@gmail.com", "capc1CCapcap");
+        Customer cust3 = new Customer(3, "Ramadhan", "rama@gmail.com", "capc1CCapcap");
 
-        Customer cust4 = new Customer(2, "Ramadhan", "rama321@gmail.com", "capc1CCapcap");
+        Customer cust4 = new Customer(4, "Ramadhan", "rama321@gmail.com", "capc1CCapcap");
 
-//        DatabaseCustomer.addCustomer(cust1);
-//        DatabaseCustomer.addCustomer(cust2);
+        DatabaseCustomer.addCustomer(cust1);
+        DatabaseCustomer.addCustomer(cust2);
         DatabaseCustomer.addCustomer(cust3);
         DatabaseCustomer.addCustomer(cust4);
         for(Customer customer : DatabaseCustomer.getCustomerDatabase()) {
             System.out.println(customer);
             System.out.println();
         }
+
+//        DatabaseCustomer.removeCustomer(3);
+//        DatabaseFood.removeFood(50);
+//            DatabaseSeller.removeSeller(50);
 
 
 
@@ -250,14 +254,19 @@ public class JFood
         }
 
 
-        CashlessInvoice ci1 = new CashlessInvoice(1, DatabaseFood.getFoodById(2), DatabaseCustomer.getCustomerById(DatabaseCustomer.getLastId()));
-        CashlessInvoice ci2 = new CashlessInvoice(2, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(DatabaseCustomer.getLastId()));
-        CashlessInvoice ci3 = new CashlessInvoice(3, DatabaseFood.getFoodDatabase(), DatabaseCustomer.getCustomerById(DatabaseCustomer.getLastId()));
-
+        CashlessInvoice ci1 = new CashlessInvoice(1, riceCategory, DatabaseCustomer.getCustomerById(1));
+        CashlessInvoice ci2 = new CashlessInvoice(2, riceCategory, DatabaseCustomer.getCustomerById(2));
+        CashlessInvoice ci3 = new CashlessInvoice(3, japaneseCategory, DatabaseCustomer.getCustomerById(3));
+////
         DatabaseInvoice.addInvoice(ci1);
         DatabaseInvoice.addInvoice(ci2);
         DatabaseInvoice.addInvoice(ci3);
 
+        // KALKULASI menggunakan THREAD
+        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
+            Thread calc = new Thread(new PriceCalculator("Calculator Price", invoice));
+            calc.start();
+        }
 
 
 

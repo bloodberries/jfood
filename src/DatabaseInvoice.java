@@ -4,7 +4,7 @@ public class DatabaseInvoice {
     private static ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<>();
     private static int lastId = 0;
 
-    public ArrayList<Invoice> getInvoiceDatabase(){
+    public static ArrayList<Invoice> getInvoiceDatabase(){
         return INVOICE_DATABASE;
     }
 
