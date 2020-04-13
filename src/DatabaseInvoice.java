@@ -12,13 +12,13 @@ public class DatabaseInvoice {
         return lastId;
     }
 
-    public Invoice getInvoiceById(int id){
+    public Invoice getInvoiceById(int id)throws InvoiceNotFoundException{
         for(Invoice invoice : INVOICE_DATABASE) {
             if(invoice.getId()==id) {
                 return invoice;
             }
         }
-        return null;
+        throw new InvoiceNotFoundException(id);
 
     }
 
@@ -56,14 +56,14 @@ public class DatabaseInvoice {
         return false;
     }
 
-    public static boolean removeInvoice(int id) {
+    public static boolean removeInvoice(int id)throws InvoiceNotFoundException {
         for(Invoice invoice : INVOICE_DATABASE) {
             if(invoice.getId()==id) {
                 INVOICE_DATABASE.remove(invoice);
                 return true;
             }
         }
-        return false;
+        throw new InvoiceNotFoundException(id);
     }
 
 
