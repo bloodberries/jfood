@@ -27,6 +27,22 @@ public class DatabaseCustomer
      * An example of a method - replace this comment with your own
      *
      */
+
+    public static Customer getCustomerLogin(String email, String password){
+        for(Customer cust : CUSTOMER_DATABASE)
+        {
+            if(cust.getEmail().equals(email) && cust.getPassword().equals(password))
+            {
+                //LAST_CUSTOMER_ID = customer.getId();
+                return cust;
+            }
+        }
+
+
+        return null;
+
+    }
+
     public static boolean addCustomer(Customer customer)throws EmailAlreadyExistsException {
         for (Customer _customer : CUSTOMER_DATABASE) {
             if(_customer.getEmail().equals(customer.getEmail())) {
