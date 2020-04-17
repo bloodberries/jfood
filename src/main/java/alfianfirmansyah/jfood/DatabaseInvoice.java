@@ -9,11 +9,11 @@ public class DatabaseInvoice {
         return INVOICE_DATABASE;
     }
 
-    public int getLastId(){
+    public static int getLastId(){
         return lastId;
     }
 
-    public Invoice getInvoiceById(int id)throws InvoiceNotFoundException{
+    public static Invoice getInvoiceById(int id)throws InvoiceNotFoundException{
         for(Invoice invoice : INVOICE_DATABASE) {
             if(invoice.getId()==id) {
                 return invoice;
@@ -23,7 +23,7 @@ public class DatabaseInvoice {
 
     }
 
-    public ArrayList<Invoice> getInvoiceByCustomer(int customerId) throws CustomerNotFoundException {
+    public static ArrayList<Invoice> getInvoiceByCustomer(int customerId) throws CustomerNotFoundException {
         ArrayList<Invoice> invoiceList = new ArrayList<>();
         Customer customer = DatabaseCustomer.getCustomerById(customerId);
         for(Invoice invoice : INVOICE_DATABASE)
@@ -47,7 +47,7 @@ public class DatabaseInvoice {
         return true;
     }
 
-    public boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus){
+    public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus){
         for(Invoice invoice : INVOICE_DATABASE) {
             if(invoice.getId() == id && invoice.getInvoiceStatus().equals(InvoiceStatus.ONGOING)) {
                 invoice.setInvoiceStatus(invoiceStatus);
@@ -56,6 +56,8 @@ public class DatabaseInvoice {
         }
         return false;
     }
+
+
 
     public static boolean removeInvoice(int id)throws InvoiceNotFoundException {
         for(Invoice invoice : INVOICE_DATABASE) {
