@@ -6,19 +6,19 @@ package alfianfirmansyah.jfood;
  * @author (Alfian Firmansyah)
  * @version (12.04.20)
  */
-public class FoodNotFoundException extends Exception
+public class LocationNotFoundException extends Exception
 {
     // membuat atribut dalam Class FoodNotFoundException
-    private int food_error;
+    private int location_error;
 
     /**
      * method mutator dalam Class FoodNotFoundException
-     * @param food_input untuk memasukkan nilai atribut
+     * @param location_input untuk memasukkan nilai atribut
      */
-    public FoodNotFoundException (int food_input)
+    public LocationNotFoundException (int location_input)
     {
-        super("Food ID: ");
-        this.food_error=food_input;
+        super("Location ID: ");
+        this.location_error=location_input;
     }
 
     /**
@@ -27,6 +27,6 @@ public class FoodNotFoundException extends Exception
      */
     public String getMessage()
     {
-        return super.getMessage()+food_error+"not found";
+        return super.getMessage()+location_error+"not found";
     }
 }

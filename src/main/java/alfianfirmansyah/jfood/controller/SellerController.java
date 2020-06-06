@@ -3,53 +3,40 @@ package alfianfirmansyah.jfood.controller;
 import alfianfirmansyah.jfood.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * Class Seller Controller merupakan blueprint Error Handling double data Ongoing Invoice.
+ *
+ * @author (Alfian Firmansyah)
+ * @version (16.04.20)
+ */
+@RequestMapping("/seller")
 @RestController
+
 public class SellerController {
 
-    @RequestMapping(value = "/seller", method= RequestMethod.GET)
-    public ArrayList<Seller> getAllSeller()
-    {
-        ArrayList<Seller> seller;
-        try {
-            seller = DatabaseSeller.getSellerDatabase();
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-        return seller;
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ArrayList<Seller> getAllSeller() throws SQLException, LocationNotFoundException {
+        return DatabaseSellerPostgre.getSeller();
     }
 
-    @RequestMapping(value = "/seller/{id}", method= RequestMethod.GET)
-    public Seller getSellerById(@PathVariable int id)
-    {
-        Seller seller;
-        try {
-            seller = DatabaseSeller.getSellerById(id);
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-        return seller;
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Seller getSellerById(@PathVariable int id) throws SellerNotFoundException {
+        return DatabaseSellerPostgre.getSellerById(id);
     }
 
-    @RequestMapping(value = "/seller", method= RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public Seller addSeller(@RequestParam(value="name") String name,
                             @RequestParam(value="email") String email,
                             @RequestParam(value="phoneNumber") String phoneNumber,
+                            @RequestParam(value="city") String city,
                             @RequestParam(value="province") String province,
-                            @RequestParam(value="description") String description,
-                            @RequestParam(value="city") String city)
+                            @RequestParam(value="description") String description)
     {
-        Location location = new Location(city,province,description);
-        Seller seller = new Seller(DatabaseSeller.getLastId()+1, name,email,phoneNumber,location);
-        try {
-            DatabaseSeller.addSeller(seller);
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
+
+        Seller seller = new Seller(DatabaseSellerPostgre.getLastId() + 1, name, email, phoneNumber, new Location(DatabaseLocationPostgre.getLastId()+1,city,province,description));
+        DatabaseSellerPostgre.insertSeller(seller);
         return seller;
     }
 

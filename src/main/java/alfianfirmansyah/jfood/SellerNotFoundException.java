@@ -1,14 +1,32 @@
 package alfianfirmansyah.jfood;
-public class SellerNotFoundException extends Exception{
-    private static int seller_error;
 
-    public SellerNotFoundException(int seller_input){
+/**
+ * Class SellerNotFoundException merupakan blueprint Error Handling data Seller.
+ *
+ * @author (Alfian Firmansyah)
+ * @version (12.04.20)
+ */
+public class SellerNotFoundException extends Exception
+{
+    // membuat atribut dalam Class SellerNotFoundException
+    private int seller_error;
+
+    /**
+     * method mutator dalam Class SellerNotFoundException
+     * @param seller_error untuk memasukkan nilai atribut
+     */
+    public SellerNotFoundException (int seller_error)
+    {
         super("Seller ID: ");
-        seller_error = seller_input;
+        this.seller_error=seller_error;
     }
-    
 
-    public String getMessage(){
-        return super.getMessage() + seller_error + " not found";
+    /**
+     * method accesor dalam Class SellerNotFoundException
+     * @return seller_error untuk mengembalikan nilai atribut
+     */
+    public String getMessage()
+    {
+        return super.getMessage()+seller_error+"not found";
     }
 }

@@ -1,29 +1,33 @@
 package alfianfirmansyah.jfood;
+
 /**
- * Enumeration class PaymentType - write a description of the enum class here
+ * Enumeration class PaymentType - Terdiri dari 2 jenis pembayaran
  *
- * @author Alfian Firmansyah
- * @version 1.0
+ * @author (Alfian Firmansyah)
+ * @version (12.03.2020)
  */
 public enum PaymentType
 {
-    CASHLESS("Cashless"),
-    CASH("Cash");
+    // membuat variable Enum Class PaymentType
+    Cashless("Cashless"),
+    Cash("Cash");
     
-    private String typePayment;
+    // membuat atribut dalam Enum Class PaymentType
+    private String category;
     
-    PaymentType(String typePayment){
-        this.typePayment = typePayment;
+    /**
+     * Contructor PaymentType
+     * @param category untuk memasukkan nilai atribut
+     */
+    PaymentType(String category){
+       this.category=category;
     }
-    
-    
+
+    /**
+     * method toString() dalam Enum Class PaymentType
+     * @return category untuk mengembalikkan atribut kedalam tipe data String
+     */
     public String toString(){
-        return typePayment;
+        return category;
     }
-    
-    /*
-    public String getTypePayment(){
-        return typePayment;
-    }
-    */
 }

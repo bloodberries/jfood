@@ -1,21 +1,28 @@
 package alfianfirmansyah.jfood;
-public class PriceCalculator implements Runnable {
 
+import java.util.ArrayList;
+
+/**
+ * Class PriceCalculator merupakan blueprint threading data Invoice.
+ *
+ * @author (Alfian Firmansyah)
+ * @version (12.04.20)
+ */
+public class PriceCalculator implements Runnable
+{
     private Invoice invoice;
 
-
-    private Thread t;
-    private String threadName;
-
-    PriceCalculator( String name, Invoice invoice) {
-        threadName = name;
-        this.invoice = invoice;
-        System.out.println("Creating " +  threadName + " Invoice ID: " + invoice.getId() );
+    public PriceCalculator(Invoice invoice){
+        this.invoice=invoice;
     }
+
     @Override
-    public void run() {
-        System.out.println("calculating invoice id: "  + invoice.getId());
+    public void run()
+    {
+        System.out.println("calculating invoice id:"+invoice.getId());
         invoice.setTotalPrice();
-        System.out.println("finish calculating invoice id: " + invoice.getId());
+        System.out.println("finish calculating invoice id:"+invoice.getId());
     }
+
+
 }

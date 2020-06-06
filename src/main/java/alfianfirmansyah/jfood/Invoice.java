@@ -1,144 +1,168 @@
 package alfianfirmansyah.jfood;
-import java.util.*;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.text.*;
+import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
- * Ini adalah class Invoice
+ * Abstract Class Invoice merupakan blueprint data Resume Transaksi toko jfood.
  *
- * @author Alfian Firmansyah
- * @version 27-02-2020
+ * @author (Alfian Firmansyah)
+ * @version (20.02.2020)
  */
 public abstract class Invoice
 {
-    // instance variables - replace the example below with your own
+    // membuat atribut dalam Class Invoice
     private int id;
     private ArrayList<Food> foods;
     private Calendar date;
-    protected int totalPrice;
+    protected int totalPrice;       //dipanggil oleh setTotalPrice
     private Customer customer;
     private InvoiceStatus invoiceStatus;
-   // private PaymentType paymentType;
-    
+    private SimpleDateFormat tgl = new SimpleDateFormat("dd MMMM yyyy");
 
     /**
      * Constructor for objects of class Invoice
-     * @param id untuk inisiasi id dari input obyek baru
-     * @param idFood untuk inisiasi idFood dari input obyek baru
-     * @param date untuk inisiasi date dari input obyek baru
-     * @param customer untuk inisiasi customer dari input obyek baru
-     * @param totalPrice untuk inisiasi total price dari input obyek baru
+     * @param id, food, date, customer, invoiceStatus untuk memasukkan nilai atribut
      */
-    public Invoice(int id, ArrayList<Food> foods, Customer customer)
+    public Invoice(int id, ArrayList<Food> foods,  Customer customer)
     {
-        // initialise instance variables
         this.id = id;
         this.foods = foods;
-        Calendar now = Calendar.getInstance(); 
-        this.date = now;
         this.customer = customer;
-        this.invoiceStatus = InvoiceStatus.ONGOING;
-
+        this.invoiceStatus=InvoiceStatus.Ongoing;
     }
 
     /**
-    * Getter id Invoice
-    * @return id
-     * @param id
-    */
-    public int getId(){
-        return this.id;
+     * method accesor dalam Class Invoice
+     * @return id untuk mengembalikan nilai atribut
+     */
+    public int getId()
+    {
+        return id;
     }
     
     /**
-    * Getter idFood Invoice
-    * @return idFood
-    */
-    public ArrayList<Food> getFoods(){
+     * method accesor dalam Class Invoice
+     * @return food untuk mengembalikan nilai atribut
+     */
+    public ArrayList<Food> getFoods()
+    {
         return foods;
     }
     
     /**
-    * Getter date Invoice
-    * @return date
-    */
-    public Calendar getDate(){
-        return date;
+     * method accesor dalam Class Invoice
+     * @return date untuk mengembalikan nilai atribut
+     */
+    public LocalDateTime getDate()
+    {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        return now;
     }
     
     /**
-    * Getter totalPrice Invoice
-    * @return totalPrice
-    */
-    public int getTotalPrice(){
+     * method accesor dalam Class Invoice
+     * @return totalPrice untuk mengembalikan nilai atribut
+     */
+    public int getTotalPrice()
+    {
         return totalPrice;
     }
     
     /**
-    * Getter Customer Invoice
-    * @return customer
-    */
-    public Customer getCustomer(){
+     * method accesor dalam Class Invoice
+     * @return customer untuk mengembalikan nilai atribut
+     */
+    public Customer getCustomer()
+    {
         return customer;
     }
-    
+
+    /**
+     * method abstract accessor dalam Class Invoice
+     * method untuk diimplementasikan pada Class turunan CashInvoice dan CashlessInvoice
+     */
     public abstract PaymentType getPaymentType();
     
-    public InvoiceStatus getInvoiceStatus(){
+    /**
+     * method accesor dalam Class Invoice
+     * @return invoiceStatus untuk mengembalikan nilai atribut
+     */
+    public InvoiceStatus getInvoiceStatus()
+    {
         return invoiceStatus;
     }
     
     /**
-    * Setter id Invoice
-    * @param id untuk set ke instance variable id
-    */
-    public void setId(int id){
+     * method mutator dalam Class Invoice
+     * @param id untuk memasukkan nilai id
+     */
+    public void setId (int id)
+    {
         this.id = id;
     }
     
     /**
-    * Setter idFood Invoice
-    * @param idFood untuk set ke instance variable idFood
-    */
-    public void setFoods(ArrayList<Food> foods){
+     * method mutator dalam Class Invoice
+     * @param foods untuk memasukkan nilai food
+     */
+    public void setFoods (ArrayList<Food> foods)
+    {
         this.foods = foods;
     }
     
     /**
-    * Setter date Invoice
-    * @param date untuk set ke instance variable date
-    */
-    public Calendar setDate(Calendar date){
-        return date;//this.date = date;
-    }
-    
-    public Calendar setDate(int year, int month, int dayOfMonth){
-        //this.date = date;
+     * method mutator dalam Class Invoice
+     * @param date untuk memasukkan nilai date
+     */
+    public Calendar setDate (Calendar date)
+    {
         return date;
     }
+
+    /**
+     * method mutator dalam Class Invoice
+     * @param year, month, dayOfMonth untuk memasukkan nilai atribut
+     */
+    public void setDate(int year, int month, int dayOfMonth)
+    {
+       this.date = new GregorianCalendar (year, month, dayOfMonth);
+    }
     
     /**
-    * Setter total price for Invoice
-    * @param totalPrice untuk set ke instance variable totalPrice
-    */
-    public abstract void setTotalPrice();
+     * method abstract mutator dalam Class Invoice
+     * method untuk diimplementasikan pada Class turunan CashInvoice dan CashlessInvoice
+     */
+    public abstract void setTotalPrice ();
     
     /**
-    * Setter customer Invoice; Member object from class Customer
-    * @param customer untuk set ke instance variable customer
-    */
-    public void setCustomer(Customer customer){
+     * method mutator dalam Class Invoice
+     * @param customer untuk memasukkan nilai customer
+     */
+    public void setCustomer (Customer customer)
+    {
         this.customer = customer;
     }
-    
-   
-    public void setInvoiceStatus(InvoiceStatus invoiceStatus){
+
+    /**
+     * method abstract toString() dalam Class Invoice
+     * method untuk diimplementasikan pada Class turunan CashInvoice dan CashlessInvoice
+     */
+    public abstract String toString();
+
+    /**
+     * method mutator dalam Class Invoice
+     * @param invoiceStatus untuk memasukkan nilai invoiceStatus
+     */
+    public void setInvoiceStatus (InvoiceStatus invoiceStatus)
+    {
         this.invoiceStatus = invoiceStatus;
     }
-    
-    /**
-    * Print data invoice
-    */
-   public abstract String toString();
-
-
 }

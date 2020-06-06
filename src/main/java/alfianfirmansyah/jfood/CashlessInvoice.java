@@ -1,155 +1,135 @@
 package alfianfirmansyah.jfood;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.*;
-import java.text.SimpleDateFormat;
+import java.text.*;
+import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 /**
- * Write a description of class CashlessInvoice here.
+ * CashlessInvoice merupakan subclass dari Superclass Invoice.
  *
- * @author Alfian Firmansyah
- * @version 1.0
+ * @author (Alfian Firmansyah)
+ * @version (13.03.2020)
  */
 public class CashlessInvoice extends Invoice
 {
-    // instance variables - replace the example below with your own
-    private static final PaymentType PAYMENT_TYPE = PaymentType.CASHLESS;
+    // membuat atribut dalam SubClass CashlessInvoice
+    private static final PaymentType PAYMENT_TYPE=PaymentType.Cashless;
     private Promo promo;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+
     /**
-     * Constructor for objects of class CashlessInvoice
+     * Overloading Contructor CashlessInvoice
+     * @param  id, foods, customer
      */
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer)
     {
-        // initialise instance variables
-        super(id, foods, customer);
-        
+        super (id, foods, customer);// initialise instance variables
     }
     
-    
+    /**
+     * Overloading Contructor CashlessInvoice
+     * @param  id, foods, customer, promo
+     */
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo)
     {
-        
-        super(id, foods, customer);
-        this.promo = promo;
+        super (id, foods, customer);
+        this.promo=promo;
     }
 
-    public PaymentType getPaymentType(){
+    /**
+     * method override accesor dalam SubClass CashlessInvoice
+     * @return PAYMENT_TYPE untuk mengembalikan nilai dalam array
+     */
+    @Override
+    public PaymentType getPaymentType()
+    {
         return PAYMENT_TYPE;
     }
-
-    public Promo getPromo(){
+    
+    /**
+     * method accesor dalam SubClass CashlessInvoice
+     * @return promo untuk mengembalikan nilai dalam atribut
+     */
+    public Promo getPromo()
+    {
         return promo;
     }
     
-//    public void setTotalPrice(){
-//        if(promo != null && promo.getActive() == true && (getFoods().getPrice()) >= promo.getMinPrice() ){
-//
-//            this.totalPrice = (getFoods().getPrice()) - promo.getDiscount();
-//        }else{
-//            this.totalPrice = (getFoods().getPrice());
-//        }
-//    }
-public void setTotalPrice() {
-    super.totalPrice=0;
-    for(Food foodList : getFoods())
+    /**
+     * method mutator dalam SubClass CashlessInvoice
+     * @param promo untuk memasukkan nilai promo
+     */
+    public void setPromo(Promo promo)
     {
-        super.totalPrice=super.totalPrice+foodList.getPrice();
+        this.promo=promo;
     }
-//        Jika terdapat objek promo. Promo aktif dan harga makanan >= min price
-    if(promo != null && super.totalPrice>=promo.getMinPrice() && promo.getActive()) {
-        super.totalPrice = super.totalPrice - promo.getDiscount();
-    }
-}
-    /*
-    public String toString(){
-        SimpleDateFormat dateNow = this.dateFormat;
-       if(promo != null && promo.getActive() == true && getFoods().getPrice_temp() >= promo.getMinPrice() ){
-       return "================INVOICE================" + "\n"+
-        "ID: " + super.getId()+ "\n"+
-        "Food: " + super.getFoods().getName()+ "\n"+
-        "Date: " + dateNow.format(super.getDate().getTime())+"\n"+
-        "Customer: " + getCustomer().getName()+ "\n"+
-        "Promo: " + promo.getCode()+ "\n"+
-        "Total Price: " + this.totalPrice + " Selamat Anda hemat " + promo.getDiscount() + "\n"+
-        "Status: " + getInvoiceStatus() + "\n"+
-        "Payment Type: " + getPaymentType()+ "\n";
-        }else if(promo != null && promo.getActive() == true && getFoods().getPrice_temp() < promo.getMinPrice() ){
-        return "================INVOICE================"+ "\n"+
-        "ID: " + super.getId()+ "\n"+
-        "Food: " + super.getFoods().getName()+ "\n"+
-        "Date: " + dateNow.format(super.getDate().getTime()) + "\n"+
-        "Customer: " + getCustomer().getName()+ "\n"+
-        "Total Price: " + this.totalPrice + "(promo tidak dapat digunakan)"+ "\n"+
-        "Status: " + getInvoiceStatus()+ "\n"+
-        "Payment Type: " + getPaymentType()+ "\n";
-        }else{
-        return "================INVOICE================"+ "\n"+
-        "ID: " + super.getId()+ "\n"+
-        "Food: " + super.getFoods().getName()+ "\n"+
-        "Date: " + dateNow.format(super.getDate().getTime())+ "\n"+
-        "Customer: " + getCustomer().getName()+ "\n"+
-        "Total Price: " + this.totalPrice + "(Terdapat promo code, silahkan gunakan)"+ "\n"+
-        "Status: " + getInvoiceStatus()+ "\n"+
-        "Payment Type: " + getPaymentType()+ "\n";
-        }
-
-
-        }
-*/
-//    public String toString(){
-////        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-////
-////        String strFoodList = "";
-////        int id = 0;
-////        ArrayList<Food> list = super.getFoods();
-////        for (Food food: list) {
-////            id += food.getId();
-////            strFoodList += food.getName() + "\n";
-////        }
-////
-////        String ret = "\nId: " + id + "\n" +
-////                "Food Name: \n" + strFoodList+ "\n" +
-////                "Date: " + formatter.format(super.getDate().getTime()) + "\n" +
-////                "Total Price: " + super.totalPrice + "\n" +
-////                "Customer Name: " + super.getCustomer().getName() + "\n" +
-////                "Invoice Status: " + super.getInvoiceStatus().toString() + "\n" +
-////                "Payment Type: " + PAYMENT_TYPE.toString();
-////
-////        int total = 0;
-////        if ((promo != null && promo.getActive() && total > promo.getMinPrice())) {
-////            ret += "\nPromo code: " + promo.getCode() + "\n";
-////            return ret;
-////        } else {
-////            return ret;
-////        }
-////    }
-    public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-        String foods = "";
-        for(Food foodList : getFoods())
+    
+    /**
+     * method override mutator dalam SubClass CashlessInvoice
+     */
+    @Override
+    public void setTotalPrice()
+    {
+        super.totalPrice=0;
+        for(Food foods : getFoods())
         {
-            foods = foods + foodList.getName() + ", ";
-        }
-        foods = foods.substring(0, foods.length() - 2);
-
-        if(promo != null && promo.getActive()) {
-            return "============INVOICE CASHLESS============"+
-                    "\nID :" + super.getId()+
-                    "\nFoods :"  + foods+
-                    "\nDate :" + sdf.format(super.getDate().getTime())+
-                    "\nCustomer :" + super.getCustomer().getName()+
-                    "\nPromo Code:" + promo.getCode()+
-                    "\nTotal price :" + totalPrice+
-                    "\nStatus :" + super.getInvoiceStatus()+
-                    "\nPayment Type :" + getPaymentType();
-        }else {
-            return "============INVOICE CASHLESS============"+
-                    "\nID :" + super.getId()+
-                    "\nFoods :"  + foods+
-                    "\nDate :" + sdf.format(super.getDate().getTime())+
-                    "\nCustomer :" + super.getCustomer().getName()+
-                    "\nTotal price :" + totalPrice+
-                    "\nStatus :" + super.getInvoiceStatus()+
-                    "\nPayment Type :" + getPaymentType();
+            if (promo != null && foods.getPrice() >= promo.getMinPrice() && promo.getActive())
+            {
+                super.totalPrice = super.totalPrice + foods.getPrice() - promo.getDiscount();
+            }
+            else
+            {
+                super.totalPrice = super.totalPrice + foods.getPrice();
+            }
         }
     }
 
+    /**
+     * method toString() dalam SubClass CashlessInvoice
+     * @return id, foods, date, customer, promo, totalPrice, invoiceStatus, paymentType untuk mengembalikkan atribut kedalam tipe data String
+     */
+    @Override //Overriding mengatur default attribut dari superclass dalam subclass
+    public String toString()
+    {
+        String string="";
+        int foodPrice=0;
+        for(int i = 0; i <= super.getFoods().size(); i++){
+            foodPrice+=super.getFoods().get(i).getPrice();
+        }
+
+        if(promo!=null&& promo.getActive() &&foodPrice>promo.getMinPrice())
+        {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+            LocalDateTime now = LocalDateTime.now();
+            string=
+                    ("================Invoice================" + "\n" +
+                            "ID: "+super.getId()+
+                            "\nFood: "+super.getFoods()+
+                            "\nDate: "+dtf.format(now)+
+                            "\nCustomer: "+super.getCustomer().getName()+
+                            "\nPromo: "+promo.getCode()+
+                            "\nTotal Price: "+super.totalPrice+
+                            "\nStatus: "+super.getInvoiceStatus()+
+                            "\nPaymentType: "+ getPaymentType() +"\n\n");
+        }
+        else
+        {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+            LocalDateTime now = LocalDateTime.now();
+            string=
+                    ("================Invoice================" + "\n" +
+                            "ID: "+super.getId()+
+                            "\nFood: \n"+super.getFoods()+
+                            "\nDate: "+dtf.format(now)+
+                            "\nCustomer: "+super.getCustomer().getName()+
+                            "\nTotal Price: "+super.totalPrice+
+                            "\nStatus: "+super.getInvoiceStatus()+
+                            "\nPaymentType: "+getPaymentType()+"\n\n");
+        }
+        System.out.println(string);
+        return string;
+    }
 }

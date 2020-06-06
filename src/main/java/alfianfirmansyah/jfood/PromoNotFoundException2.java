@@ -6,18 +6,18 @@ package alfianfirmansyah.jfood;
  * @author (Alfian Firmansyah)
  * @version (12.04.20)
  */
-public class PromoNotFoundException extends Exception
+public class PromoNotFoundException2 extends Exception
 {
     // membuat atribut dalam Class PromoNotFoundException
-    private int promo_error;
+    private String promo_error;
 
     /**
      * method mutator dalam Class PromoNotFoundException
      * @param promo_error untuk memasukkan nilai atribut
      */
-    public PromoNotFoundException (int promo_error)
+    public PromoNotFoundException2 (String promo_error)
     {
-        super("Promo ID: ");
+        super("Promo Code: ");
         this.promo_error=promo_error;
     }
 

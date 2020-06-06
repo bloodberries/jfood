@@ -1,17 +1,32 @@
 package alfianfirmansyah.jfood;
-public class InvoiceNotFoundException extends Exception{
 
+/**
+ * Class InvoiceNotFoundException merupakan blueprint Error Handling data Invoice.
+ *
+ * @author (Alfian Firmansyah)
+ * @version (13.04.20)
+ */
+public class InvoiceNotFoundException extends Exception
+{
+    // membuat atribut dalam Class InvoiceNotFoundException
     private static int invoice_error;
 
-    public InvoiceNotFoundException(int invoice_input){
+    /**
+     * method mutator dalam Class InvoiceNotFoundException
+     * @param invoice_error untuk memasukkan nilai atribut
+     */
+    public InvoiceNotFoundException (int invoice_error)
+    {
         super("Invoice ID: ");
-        invoice_error = invoice_input;
+        this.invoice_error=invoice_error;
     }
 
-
-    public String getMessage(){
-
-        return super.getMessage() + invoice_error + " not found";
+    /**
+     * method accesor dalam Class InvoiceNotFoundException
+     * @return invoice_error untuk mengembalikan nilai atribut
+     */
+    public String getMessage()
+    {
+        return super.getMessage()+invoice_error+"not found";
     }
-
 }

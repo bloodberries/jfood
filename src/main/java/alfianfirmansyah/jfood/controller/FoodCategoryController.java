@@ -2,7 +2,7 @@ package alfianfirmansyah.jfood.controller;
 
 import alfianfirmansyah.jfood.*;
 import org.springframework.web.bind.annotation.*;
-import javax.xml.crypto.Data;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 /**
@@ -11,17 +11,17 @@ import java.util.ArrayList;
  * @author (Alfian Firmansyah)
  * @version (16.04.20)
  */
-@RequestMapping("/promo")
+@RequestMapping("/food_category")
 @RestController
-public class PromoController {
+public class FoodCategoryController {
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ArrayList<Promo> getAllPromo() throws SQLException {
-        return DatabasePromoPostgre.getPromo();
+    public ArrayList<FoodCategory> getAllCategories() throws SQLException {
+        return DatabaseFoodCategoryPostgre.getFoodCategory();
     }
 
-    @RequestMapping(value = "/{code}", method = RequestMethod.GET)
-    public Promo getPromoByCode(@PathVariable String code) throws PromoNotFoundException2 {
-        return DatabasePromoPostgre.getPromoByCode(code);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public FoodCategory getCategoryById(@PathVariable int id) throws FoodCategoryNotFoundException {
+        return DatabaseFoodCategoryPostgre.getFoodCategoryById(id);
     }
 
 //    @RequestMapping(value = "", method = RequestMethod.POST)

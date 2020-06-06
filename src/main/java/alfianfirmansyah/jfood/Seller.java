@@ -1,13 +1,14 @@
 package alfianfirmansyah.jfood;
+
 /**
- * Ini adalah class seller
+ * Class Seller merupakan blueprint data Riwayat Penjual.
  *
- * @author Alfian Firmansyah
- * @version 27-01-2020
+ * @author (Alfian Firmansyah)
+ * @version (20.02.20)
  */
 public class Seller
 {
-    // instance variables - replace the example below with your own
+    // membuat atribut dalam Class Seller
     private int id;
     private String name;
     private String email;
@@ -15,118 +16,91 @@ public class Seller
     private Location location;
 
     /**
-     * Constructor for objects of class Seller
-     * @param id untuk inisiasi id dari input obyek baru
-     * @param name untuk inisiasi name dari input obyek baru
-     * @param email untuk inisiasi email dari input obyek baru
-     * @param phoneNumber untuk inisiasi phoneNumber dari input obyek baru
-     * @param locaion untuk inisiasi location dari input obyek baru
+     * Contructor Seller
+     * @param  id, name, email, phoneNumber, location untuk memasukkan nilai atribut
      */
-    public Seller(int id, String name, String email, String phoneNumber, Location location)
+    public Seller(int id, String name, String email, String phoneNumber, Location location) //constructor dalam Class Seller
     {
-        // initialise instance variables
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.location = location;
-    }
-
-    /**
-     * Getter id for Seller
-     * @return id
-     */
-    public int getId(){
-        return id;
+        this.id=id;
+        this.name=name;
+        this.email=email;
+        this.phoneNumber=phoneNumber;
+        this.location=location;
     }
     
     /**
-     * Getter name for Seller
-     * @return name
+     * method accesor dalam Class Seller
+     * @return id untuk mengembalikan nilai atribut
      */
-    public String getName(){
-        return name;
-    }
+    public int getId() {return id;}
     
     /**
-     * Getter email for Seller
-     * @return email
+     * method accesor dalam Class Seller
+     * @return name untuk mengembalikan nilai atribut
      */
-    public String getEmail(){
-        return email;
-    }
+    public String getName() {return name;}
     
     /**
-     * Getter phone number for Seller
-     * @return phoneNumber
+     * method accesor dalam Class Seller
+     * @return email untuk mengembalikan nilai atribut
      */
-    public String getPhoneNumber(){
-        return phoneNumber;
-    }
+    public String getEmail() {return email;}
     
     /**
-     * Getter location for Seller; Object member dari class location
-     * @return location
+     * method accesor dalam Class Seller
+     * @return phoneNumber untuk mengembalikan nilai atribut
      */
-    public Location getLocation(){
-        return location;
-    }
+    public String getPhoneNumber() {return phoneNumber;}
     
     /**
-     * Setter id for Seller
-     * @param id untuk set ke instance variable id
+     * method accesor dalam Class Seller
+     * @return location untuk mengembalikan nilai atribut
      */
-    public void setId(int id){
-        this.id = id;
-    }
+    public Location getLocation() {return location;}
     
     /**
-     * Setter name for Seller
-     * @param name untuk set ke instance variable name
+     * method mutator dalam Class Seller
+     * @param id untuk memasukkan nilai id
      */
-    public void setName(String name){
-        this.name = name;
-    }
+    public void setId(int id) {this.id=id;}
     
     /**
-     * Setter email for Seller
-     * @param email untuk set ke instance variable email
+     * method mutator dalam Class Seller
+     * @param name untuk memasukkan nilai name
      */
-    public void setEmail(String email){
-        this.email = email;
-    }
+    public void setName(String name) {this.name=name;}
     
     /**
-     * Setter phone number for Seller
-     * @param phoneNumber untuk set ke instance variable phoneNumber
+     * method mutator dalam Class Seller
+     * @param email untuk memasukkan nilai email
      */
-    public void setPhoneNUmber(String phoneNumber){
-        this.phoneNumber = phoneNumber;
-    }
+    public void setEmail(String email) {this.email=email;}
     
     /**
-     * Setter location for Seller, based on object model from class Location
-     * @param location untuk set ke instance variable location
+     * method mutator dalam Class Seller
+     * @param phoneNumber untuk memasukkan nilai phoneNumber
      */
-    public void setLocation(Location location){
-        this.location = location;
-    }
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber=phoneNumber;}
     
     /**
-     * print data seller
+     * method mutator dalam Class Seller
+     * @param location untuk memasukkan nilai location
      */
+    public void setLocation(Location location) {this.location=location;}
     
-    public String toString(){
-        return "================Seller================\n" + 
-        "Id : " + getName() + "\n" +
-        "Phone Number : " + getPhoneNumber() + "\n" +
-        "Location : " + getLocation();
+    /**
+     * method toString() dalam Class Seller
+     * @return id, name, phoneNumber, location untuk mengembalikkan atribut kedalam tipe data String
+     */
+    public String toString() //Method requirement value category hanya dapat bernilai String
+    {
+        String string =
+            "ID = "+id+"\n"+
+            "Nama = "+name+"\n"+
+            "PhoneNumber = "+phoneNumber+"\n"+
+            "Location = "+location+"\n";
+            return string;
     }
-    
-    /*
-    public void printData(){
-        //getName();
-        System.out.println(getName());
-    }
-    */
 }
+    
+

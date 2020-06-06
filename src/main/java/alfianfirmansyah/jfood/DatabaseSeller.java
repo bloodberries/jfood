@@ -1,61 +1,72 @@
 package alfianfirmansyah.jfood;
+
 import java.util.ArrayList;
 
 /**
- * Write a description of class DatabaseSeller here.
+ * Class DatabaseSeller merupakan blueprint CRUD data Riwayat Penjual.
  *
- * @author Alfian Firmansyah
- * @version 28-02-2020
+ * @author (Alfian Firmansyah)
+ * @version (28.02.20)
  */
 public class DatabaseSeller
 {
-    // instance variables - replace the example below with your own
-    private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<>();
-    private static int lastId = 0;
-
-
-
-
+    // membuat atribut dalam Class DatabaseSeller
+    public static ArrayList<Seller> SELLER_DATABASE = new ArrayList<>();
+    private static int lastId=0;
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @return    the sum of x and y
+     * method accesor dalam Class DatabaseSeller
+     * @return SELLER_DATABASE untuk mengembalikkan nilai array
      */
+    public static ArrayList<Seller> getSellerDatabase() {return SELLER_DATABASE;}
 
-    public static boolean addSeller(Seller seller) {
+    /**
+     * method accesor dalam Class DatabaseSeller
+     * @return lastId untuk mengembalikan nilai atribut
+     */
+    public static int getLastId() {return lastId;}
 
-        SELLER_DATABASE.add(seller);
-        lastId=seller.getId();
-        return true;
-    }
-
-    public static boolean removeSeller(int id)throws SellerNotFoundException {
-        for(Seller seller : SELLER_DATABASE) {
-            if(seller.getId()==id) {
-                SELLER_DATABASE.remove(seller);
-                return true;
+    /**
+     * method accesor dalam Class DatabaseSeller
+     * @param id
+     * @return seller untuk mengembalikkan nilai array
+     */
+    public static Seller getSellerById(int id) throws SellerNotFoundException
+    {
+        // put your code here
+        for (Seller seller : SELLER_DATABASE) {
+            if (seller.getId() == id) {
+                return seller;
             }
         }
         throw new SellerNotFoundException(id);
     }
 
-    public static Seller getSeller(){
-        return null;
-    }
+    /**
+     * method boolean mutator dalam Class DatabaseSeller
+     * @param seller
+     * @return true untuk menambahkan nilai dalam array
+     */
+        public static boolean addSeller(Seller seller)
+        {
+            // put your code here
+            SELLER_DATABASE.add(seller);
+            lastId=seller.getId();
+            return true;
+        }
 
-    public static ArrayList<Seller> getSellerDatabase(){
-        return SELLER_DATABASE;
-    }
-
-    public static int getLastId(){
-        return lastId;
-    }
-
-    public static Seller getSellerById(int id)throws SellerNotFoundException {
-        for(Seller seller : SELLER_DATABASE) {
-            if(seller.getId()==id) {
-                return seller;
+    /**
+     * method boolean mutator dalam Class DatabaseSeller
+     * @param id
+     * @return true untuk menghapus nilai dalam array
+     */
+    public static boolean removeSeller(int id) throws SellerNotFoundException
+    {
+        // put your code here
+        for(Seller sell : SELLER_DATABASE){
+            if(sell.getId()==id){
+                SELLER_DATABASE.remove(sell);
+                return true;
             }
         }
         throw new SellerNotFoundException(id);

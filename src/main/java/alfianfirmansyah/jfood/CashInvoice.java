@@ -1,98 +1,131 @@
 package alfianfirmansyah.jfood;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.*;
-import java.text.SimpleDateFormat;
+import java.text.*;
+import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.lang.reflect.Array;
+
+
 /**
- * Write a description of class CashInvoice here.
+ * CashInvoice merupakan subclass dari Superclass Invoice.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Alfian Firmansyah)
+ * @version (13.03.2020)
  */
 public class CashInvoice extends Invoice
 {
     // instance variables - replace the example below with your own
-    private static final PaymentType PAYMENT_TYPE = PaymentType.CASH;
-    private int deliveryFee = 0;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-    
+    private static final PaymentType PAYMENT_TYPE=PaymentType.Cash;
+    private int deliveryFee=0;
+
     /**
-     * Constructor for objects of class CashInvoice
+     * Overloading Contructor CashInvoice
+     * @param  id, foods, customer
      */
     public CashInvoice(int id, ArrayList<Food> foods, Customer customer)
     {
-        super(id, foods, customer);
-       
-    }
-    
-    public CashInvoice(int id, ArrayList<Food> foods, Customer customer, int deliveryFee){
-        super(id, foods, customer);
-        this.deliveryFee = deliveryFee;
-        
+        super (id, foods, customer);// initialise instance variable
     }
 
-    public PaymentType getPaymentType(){
+    /**
+     * Overloading Contructor CashInvoice
+     * @param  id, foods, customer, deliveryFee
+     */
+    public CashInvoice(int id, ArrayList<Food> foods,  Customer customer, int deliveryFee)
+    {
+        super (id, foods, customer);
+        this.deliveryFee=deliveryFee;
+    }
+
+    /**
+     * method override accesor dalam SubClass CashInvoice
+     * @return PAYMENT_TYPE untuk mengembalikan nilai dalam array
+     */
+    @Override
+    public PaymentType getPaymentType()
+    {
         return PAYMENT_TYPE;
     }
-    
-    public int getDeliveryFee(){
+
+    /**
+     * method accesor dalam SubClass CashInvoice
+     * @return deliveryFee untuk mengembalikan nilai dalam atribut
+     */
+    public int getDeliveryFee()
+    {
         return deliveryFee;
     }
-    
-    public void setDeliveryFee(){
-        this.deliveryFee = deliveryFee;
-    }
-    
-//    public void setTotalPrice(){
-//        if(deliveryFee != 0){
-//            super.totalPrice = super.getFoods().getPrice() + getDeliveryFee();
-//        }else{
-//            super.totalPrice = super.getFoods().getPrice();
-//        }
-//    }
 
+    /**
+     * method mutator dalam SubClass CashInvoice
+     * @param deliveryFee untuk memasukkan nilai atribut
+     */
+    public void setDeliveryFee(int deliveryFee)
+    {
+        this.deliveryFee=deliveryFee;
+    }
+
+    /**
+     * method override mutator dalam SubClass CasInvoice
+     */
     @Override
-    public void setTotalPrice() {
+    public void setTotalPrice()
+    {
         super.totalPrice=0;
-        for(Food foodList : getFoods())
+        for(Food foods:getFoods())
         {
-            super.totalPrice=super.totalPrice+foodList.getPrice();
+            super.totalPrice = totalPrice + foods.getPrice();
         }
-        super.totalPrice=super.totalPrice+deliveryFee;
+        super.totalPrice = super.totalPrice+deliveryFee;
     }
 
-    /*
-    public String toString(){
-        SimpleDateFormat dateNow = this.dateFormat;
-        return "================INVOICE================"+ "\n"+
-        "ID: " + super.getId()+ "\n"+
-        "Foods: " + super.getFoods().getName()+ "\n"+
-        "Date: " + dateNow.format(super.getDate().getTime())+ "\n"+
-        "Customer: " + getCustomer().getName()+ "\n"+
-        "Delivery Fee: " + getDeliveryFee()+ "\n"+
-        "Total price: " + super.totalPrice+ "\n"+
-        "Status: " + getInvoiceStatus()+ "\n"+
-        "Payment Type: " + getPaymentType()+ "\n";
-        
-    }
-    */
-    public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-        String foods = "";
-        for(Food foodList : getFoods())
+    /**
+     * method toString() dalam SubClass CashInvoice
+     * @return id, foodName, date, customerName, deliveryFee, totalPrice, invoiceStatus, paymentType untuk mengembalikkan atribut kedalam tipe data String
+     */
+    @Override
+    public String toString()
+    {
+        StringBuilder foodName = new StringBuilder();
+        for (Food food: getFoods())
         {
-            foods = foods + foodList.getName() + ", ";
+            foodName.append(food.getName()).append(", ");
         }
-        foods = foods.substring(0, foods.length() - 2);
-
-        return "============INVOICE CASH============"+
-                "\nID :" + super.getId()+
-                "\nFoods :"  + foods+
-                "\nDate :" + sdf.format(super.getDate().getTime())+
-                "\nCustomer :" + super.getCustomer().getName()+
-                "\nDelivery Fee :" + getDeliveryFee()+
-                "\nTotal price :" + totalPrice+
-                "\nStatus :" + super.getInvoiceStatus()+
-                "\nPayment Type :" + getPaymentType();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        if(deliveryFee>0)
+        {
+            return
+                    "================Invoice================" +
+                            "\nID           : "+super.getId()+
+                            "\nFood         : "+foodName+
+                            "\nDate         : "+LocalDateTime.now()+
+                            "\nCustomer     : "+super.getCustomer().getName()+
+                            "\nDelivery Fee : "+deliveryFee+
+                            "\nTotal Price  : "+super.totalPrice+
+                            "\nStatus       : "+super.getInvoiceStatus()+
+                            "\nPaymentType  : "+getPaymentType()+"\n\n";
+        }
+        else
+        {
+            return
+                    "================Invoice================" +
+                            "\nID           : "+super.getId()+
+                            "\nFoods        : "+foodName+
+                            "\nDate         : "+LocalDateTime.now()+
+                            "\nCustomer     : "+super.getCustomer().getName()+
+                            "\nDelivery Fee : 0"+
+                            "\nTotal Price  : "+super.totalPrice+
+                            "\nStatus       : "+super.getInvoiceStatus()+
+                            "\nPaymentType  : "+getPaymentType()+"\n\n";
+        }
     }
-
 }
+     
+    
+    

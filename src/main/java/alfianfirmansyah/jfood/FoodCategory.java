@@ -1,34 +1,57 @@
 package alfianfirmansyah.jfood;
+
+
 /**
- * Enumeration class ItemCategory - write a description of the enum class here
+ * Enumeration class FoodCategory - Terdiri dari 8 kategori menu
  *
- * @author Alfian Firmansyah
- * @version (version number or date here)
+ * @author (Alfian Firmansyah)
+ * @version (12.03.2020)
  */
-public enum FoodCategory
+public class FoodCategory //Enum Class FoodCategory
 {
-    BEVERAGES("Beverages"), 
-    COFFEE("Coffee"), 
-    WESTERN("Western"), 
-    SNACKS("Snacks"), 
-    RICE("Rice"), 
-    NOODLES("Noodles"), 
-    BAKERY("Backery"),
-    JAPANESE("Japanese");
-    
-    private String categoryFood;
-    
-    FoodCategory(String categoryFood){
-        this.categoryFood = categoryFood;
+    // membuat variable Enum Class FoodCategory
+//    Beverages("Beverages"),
+//    Coffee("Coffee"),
+//    Western("Western"),
+//    Snacks("Snacks"),
+//    Rice("Rice"),
+//    Noodles("Noodles"),
+//    Bakery("Bakery"),
+//    Japanese("Japanese"); //Enum 8 kategori menu
+    private int id;
+
+    // membuat atribut dalam Enum Class FoodCategory
+    private String category;
+
+
+    /**
+     * Contructor FoodCategory
+     * @param category untuk memasukkan nilai atribut
+     */
+    public FoodCategory(int id, String category){
+        this.id = id;
+        this.category = category;
     }
-    
-    public String toString(){
-        return categoryFood;
+
+    public int getId(){
+        return id;
     }
-    
-    /*
-    public String getCategoryFood(){
-        return categoryFood;
+
+    public String getCategory(){
+        return category;
     }
-    */
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setCategory(String category){
+        this.category = category;
+    }
+
+    /**
+     * method toString() dalam Enum Class FoodCategory
+     * @return category untuk mengembalikkan atribut kedalam tipe data String
+     */
+    public String toString() {return category;}
 }

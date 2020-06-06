@@ -1,38 +1,103 @@
 package alfianfirmansyah.jfood;
-import java.util.ArrayList;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.lang.reflect.Array;
+
 /**
- * Ini adalah class Databasefood
- * digunakan untuk mengakses database
+ * Class DatabaseFood merupakan blueprint CRUD data Menu Food.
  *
- * @author Alfian Firmansyah
- * @version 27-02-2020
+ * @author (Alfian Firmansyah)
+ * @version (27.02.20)
  */
 public class DatabaseFood
 {
-    // instance variables - replace the example below with your own
-    private static ArrayList<Food> FOOD_DATABASE = new ArrayList<>();
-    private static int lastId = 0;
-
+    // membuat atribut dalam Class DatabaseFood
+    public static ArrayList<Food> FOOD_DATABASE = new ArrayList<>();
+    private static int lastId=0;
 
     /**
-     * <h1> This method used for adding food to the database</h1>
-     * @param food
-     * @return boolean
+     * method accesor dalam Class DatabaseFood
+     * @return FOOD_DATABASE untuk mengembalikan nilai array
      */
-    public static boolean addFood(Food food) {
+    public static ArrayList<Food> getFoodDatabase() {return FOOD_DATABASE;}
+
+    /**
+     * method accesor dalam Class DatabaseFood
+     * @return lastId untuk mengembalikan nilai atribut
+     */
+    public static int getLastId() {return lastId;}
+
+    /**
+     * method accesor dalam Class DatabaseFood
+     * @param id
+     * @return food untuk mengembalikan nilai array
+     */
+    public static Food getFoodById(int id) throws FoodNotFoundException //method accesor dalam Class Seller
+    {
+        for (Food food : FOOD_DATABASE) {
+            if (food.getId() == id) {
+                return food;
+            }
+        }
+        throw new FoodNotFoundException(id);
+    }
+
+    /**
+     * method accesor dalam Class DatabaseFood
+     * @param sellerId
+     * @return list untuk mengembalikan nilai array
+     */
+    public static ArrayList<Food> getFoodBySeller(int sellerId)  //method accesor dalam Class Seller
+    {
+        ArrayList<Food> list = new ArrayList<Food>();
+
+        for (Food food:FOOD_DATABASE)
+        {
+            if(food.getSeller().getId()==sellerId)
+            {
+                list.add(food);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * method accesor dalam Class DatabaseFood
+     * @param category
+     * @return list untuk mengembalikan nilai array
+     */
+    public static ArrayList<Food> getFoodByCategory(FoodCategory category)
+    {
+        ArrayList<Food> list = new ArrayList<Food>();
+        for (Food food:FOOD_DATABASE)
+        {
+            if(food.getCategory().equals(category))
+            {
+                list.add(food);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * method boolean mutator dalam Class DatabaseFood
+     * @param food
+     * @return true untuk menambahkan nilai dalam array
+     */
+    public static boolean addFoods(Food food)
+    {
         FOOD_DATABASE.add(food);
         lastId=food.getId();
         return true;
     }
 
-
-    /** <h1> This method used for removing food from the database </h1>
-
-     * @return boolean
+    /**
+     * method boolean mutator dalam Class DatabaseFood
+     * @param id
+     * @return true untuk menghapus nilai dalam array
      */
-    public static boolean removeFood(int id)throws FoodNotFoundException {
+    public static boolean removeFood(int id) throws FoodNotFoundException
+    {
         for(Food food : FOOD_DATABASE) {
             if(food.getId() == id) {
                 FOOD_DATABASE.remove(food);
@@ -40,52 +105,5 @@ public class DatabaseFood
             }
         }
         throw new FoodNotFoundException(id);
-    }
-
-
-    /**
-     * <h1>This method will return the food object</h1>
-     * @return Food object
-     */
-    public static Food getFoodById(int id) throws FoodNotFoundException
-    {
-        for(Food food : FOOD_DATABASE) {
-            if(food.getId() == id) {
-                return food;
-            }
-        }
-        throw new FoodNotFoundException(id);
-    }
-
-    public static ArrayList<Food> getFoodBySeller(int idSeller) throws SellerNotFoundException {
-        ArrayList<Food> foodList = new ArrayList<Food>();
-        Seller seller = DatabaseSeller.getSellerById(idSeller);
-        for(Food food : FOOD_DATABASE) {
-            if(food.getSeller().equals(seller)) {
-                foodList.add(food);
-            }
-        }
-        return foodList;
-    }
-
-    public static ArrayList<Food> getFoodByCategory(FoodCategory category) {
-        ArrayList<Food> foodList = new ArrayList<Food>();
-        for(Food food : FOOD_DATABASE) {
-            if(food.getCategory().equals(category)) {
-                foodList.add(food);
-            }
-        }
-        return foodList;
-    }
-    /**
-     * <h1>This method will return a list of food as an array of string</h1>
-     * @return String[]
-     */
-    public static ArrayList<Food> getFoodDatabase(){
-        return FOOD_DATABASE;
-    }
-
-    public static int getLastId(){
-        return lastId;
     }
 }

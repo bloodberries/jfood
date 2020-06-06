@@ -1,24 +1,35 @@
 package alfianfirmansyah.jfood;
+
+
 /**
- * Enumeration class InvoiceStatus - write a description of the enum class here
+ * Enumeration class InvoiceStatus - Terdiri dari 3 jenis status
  *
- * @author Alfian Firmansyah
- * @version 1.0
+ * @author (Alfian Firmansyah)
+ * @version (12.03.2020)
  */
 public enum InvoiceStatus
 {
-    ONGOING("Ongoing"),
-    FINISHED("Finished"),
-    CANCELLED("Cancelled");
+    Ongoing("Ongoing"),
+    Finished("Finished"),
+    Cancelled("Cancelled");//Enum 3 jenis status
     
-    private String statusInvoice;
+    // membuat atribut dalam Enum Class InvoiceStatus
+    private String status;
     
-    InvoiceStatus(String statusInvoice){
-        this.statusInvoice = statusInvoice;
+    /**
+     * Contructor InvoiceStatus
+     * @param  status untuk memasukkan nilai atribut
+     */
+    InvoiceStatus(String status)
+    {
+       this.status=status;
     }
-    
-    
+
+    /**
+     * method toString() dalam Enum Class InvoiceStatus
+     * @return status untuk mengembalikkan atribut kedalam tipe data String
+     */
     public String toString(){
-        return statusInvoice;
+        return status;
     }
 }

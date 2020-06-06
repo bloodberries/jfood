@@ -1,87 +1,86 @@
 package alfianfirmansyah.jfood;
+
 /**
- * Ini adalah class Location
+ * Class Location merupakan blueprint data Cabang Toko.
  *
- * @author Alfian Firmansyah
- * @version 27-2-2020
+ * @author (Alfian Firmansyah)
+ * @version (27.02.20)
  */
 public class Location
 {
-    // instance variables - replace the example below with your own
+    // membuat atribut dalam Class Location
     private String province;
     private String description;
     private String city;
+    private int id;
 
     /**
-     * Constructor for objects of class Location
-     * @param city untuk inisiasi city dari input obyek baru
-     * @param province untuk inisiasi province dari input obyek baru
-     * @param description untuk inisiasi description dari input obyek baru
+     * Contructor Location
+     * @param  city, province, description untuk memasukkan nilai atribut
      */
-    public Location(String city, String province, String description)
+    public Location(int id, String city, String province, String description)
     {
-        // initialise instance variables
+        this.id = id;
         this.city = city;
         this.province = province;
         this.description = description;
-        
     }
-    
-    /**
-    * Getter province Location
-    * @return province
-    */
-    public String getProvince(){
-        return province;
+
+
+    public int getId(){
+        return id;
     }
-    
-    /**
-    * Getter city Location
-    * @return province
-    */
-    public String getCity(){
-        return city;
+
+    public void setId(int id){
+        this.id = id;
     }
 
     /**
-    * Getter Description Location
-    * @return description
-    */
-    public String getDescription(){
-        return description;
-    }
+     * method accesor dalam Class Location
+     * @return province untuk mengembalikan nilai atribut
+     */
+    public String getProvince() {return province;}
     
     /**
-    * Setter Province Location
-    * @param province untuk set ke instance variable province
-    */
-    public void setProvince(String province){
-        this.province = province;
-    }
-   
-    /**
-    * Setter City Location
-    * @param city untuk set ke instance variable city
-    */
-    public void setCity(String city){
-        this.city = city;
-    }
+     * method accesor dalam Class Location
+     * @return city untuk mengembalikan nilai atribut
+     */
+    public String getCity() {return city;}
     
     /**
-    * Setter Province Location
-    * @param description untuk set ke instance variable description
-    */
-    public void setDescription(String description){
-        this.description = description;
-    }
+     * method accesor dalam Class Location
+     * @return description untuk mengembalikan nilai atribut
+     */
+    public String getDescription() {return description;}
     
+    /**
+     * method mutator dalam Class Location
+     * @param province untuk memasukkan nilai province
+     */
+    public void setProvince(String province) {this.province=province;}
+    
+    /**
+     * method mutator dalam Class Location
+     * @param city untuk memasukkan nilai city
+     */
+    public void setCity(String city) {this.city=city;}
+    
+    /**
+     * method mutator dalam Class Location
+     * @param description untuk memasukkan nilai description
+     */
+    public void setDescription(String description) {this.description=description;}
 
     /**
-    * Print data lokasi
-    */
-    public void printData(){
-        System.out.println(getProvince());
-        // getProvince();
+     * method toString() dalam Class Location
+     * @return province, city, description untuk mengembalikkan atribut kedalam tipe data String
+     */
+    public String toString() //Method requirement value category hanya dapat bernilai String
+    {
+        String string =
+            "Province = "+province+"\n"+
+            "City = "+city+"\n"+
+            "Description = "+description+"\n";
+        return string;
     }
-    
 }

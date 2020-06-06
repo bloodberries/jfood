@@ -1,145 +1,138 @@
 package alfianfirmansyah.jfood;
+
 /**
- * Ini adalah class food
+ * Class Food merupakan blueprint data Menu.
  *
- * @author Alfian Firmansyah
- * @version 27-02-2020
+ * @author (Alfian Firmansyah)
+ * @version (20.02.20)
  */
 public class Food
 {
-    // instance variables - replace the example below with your own
+    // membuat atribut dalam Class Food
     private int id;
     private String name;
-    private Seller seller;
     private int price;
     private FoodCategory category;
-    
-    // untuk iseng save price sebelum price diubah
-    private int price_temp;
+    private Seller seller;
 
     /**
-     * Constructor for objects of class Food
-     * @param id untuk inisiasi id dari input obyek baru
-     * @param name untuk inisiasi name dari input obyek baru
-     * @param seller untuk inisiasi seller dari input obyek baru
-     * @param price untuk inisiasi price dari input obyek baru
-     * @param category untuk inisiasi category dari input obyek baru
+     * Contructor Food
+     * @param  id, name, seller, price, category untuk memasukkan nilai atribut
+     * @param category
      */
-    public Food(int id, String name, Seller seller, int price, FoodCategory category)
+    public Food(int id, String name, Seller seller, int price, FoodCategory category) //constructor dalam Class Food
     {
-        // initialise instance variables
-        this.id = id;
-        this.name = name;
-        this.seller = seller;
-        this.price = price;
-        this.category = category;
-        
-        this.price_temp = this.price;
-   
-    }
-    
-    public int getPrice_temp(){
-        return price_temp;
+        this.id=id;
+        this.name=name;
+        this.seller=seller;
+        this.price=price;
+        this.category=category;
     }
 
-
-    /** 
-     * Getter attribut id dalam class food
-     * @return id
+    /**
+     * method accesor dalam Class Food
+     * @return id untuk mengembalikan nilai atribut
      */
     public int getId()
     {
         return id;
     }
     
-    /** 
-     * Getter attribut name dalam class food
-     * @return name
+    /**
+     * method accesor dalam Class Food
+     * @return name untuk mengembalikan nilai atribut
      */
-    public String getName(){
+    public String getName()
+    {
         return name;
     }
     
-    /** 
-     * Getter attribut seller dalam class food yang merupakan object member dari class Seller
-     * @return seller
+    /**
+     * method accesor dalam Class Food
+     * @return seller untuk mengembalikan nilai atribut
      */
-    public Seller getSeller(){
+    public Seller getSeller()
+    {
         return seller;
     }
     
-    
-    /** 
-     * Getter attribut price dalam class food
-     * @return price
+    /**
+     * method accesor dalam Class Food
+     * @return price untuk mengembalikan nilai atribut
      */
-    public int getPrice(){
+    public int getPrice()
+    {
         return price;
     }
     
-    /** 
-     * Getter attribut category dalam class food
-     * @return category
+    /**
+     * method accesor dalam Class Food
+     * @return category untuk mengembalikan nilai atribut
      */
-    public FoodCategory getCategory(){
+    public FoodCategory getCategory()
+    {
         return category;
     }
     
-    /** 
-     * Getter attribut id dalam class food
-     * @param name untuk set ke instance variable name
+    
+    /**
+     * method mutator dalam Class Food
+     * @param id untuk memasukkan nilai id
      */
-    public void setName(String name){
-        this.name = name;
+    public void setId (int id)
+    {
+        this.id=id;
     }
     
-    /** 
-     * Setter attribut seller dalam class food yang merupakan object member dari kelas Seller
-     * @param seller untuk set ke instance variable seller
+    /**
+     * method mutator dalam Class Food
+     * @param name untuk memasukkan nilai name
      */
-    public void setSeller(Seller seller){
-        this.seller = seller;
+    public void setName (String name)
+    {
+        this.name=name;
     }
     
-    /** 
-     * Seller attribut price dalam class food
-     * @param price untuk set ke instance variable price
-     */
-    public void setPrice(int price){
-        this.price = price;
+    /**
+     * method mutator dalam Class Food
+     * @param seller untuk memasukkan nilai seller
+     */public void setSeller (Seller seller)
+    {
+        this.seller=seller;
     }
     
-    /** 
-     * Getter attribut category dalam class food
-     * @param category untuk set ke instance variable category
+    /**
+     * method mutator dalam Class Food
+     * @param price untuk memasukkan nilai price
      */
-    public void setCategory(FoodCategory category){
-        this.category = category;
+    public void setPrice (int price)
+    {
+        this.price=price;
     }
     
-    /** 
-     * Printdata food
+    /**
+     * method mutator dalam Class Food
+     * @param category untuk memasukkan nilai category
      */
-    public String toString(){
-    return "================Customer================\n" + 
-       "Id : " + getId() + "\n" +
-       "Nama : " + getName() + "\n" +
-       "Seller : " + seller.getName() + "\n" +
-       "City : " + seller.getLocation().getCity() + "\n" +
-       "Price : " + getPrice() + "\n" + 
-       "Category : " + category.toString();
+    public void setCategory (FoodCategory category)
+    {
+        this.category=category;
     }
-    
-    /*
-    public void printData(){
-       System.out.println("================FOOD================");
-       System.out.println("ID: " + getId());
-       System.out.println("Name: " + getName());
-       System.out.println("Seller: " + seller.getName());
-       System.out.println("City: " + seller.getLocation().getCity());
-       System.out.println("Price: " + getPrice());
-       System.out.println("Category: " + getCategory());
-       
+
+    /**
+     * method toString() dalam Class Food
+     * @return id, name, seller, city, price, category untuk mengembalikkan atribut kedalam tipe data String
+     */
+    public String toString() //Method requirement value category hanya dapat bernilai String
+    {
+        String string =
+            "\nFood:\n"+
+            "ID = "+id+"\n"+
+            "Nama = "+name+"\n"+
+            "Seller = "+seller.getName()+"\n"+
+            "City = "+seller.getLocation().getCity()+"\n"+
+            "Price = "+price+"\n"+
+            "Category = "+category+"\n";
+        return string;
     }
-    */
 }
